@@ -8,30 +8,32 @@ import com.wangbai.weather.R;
 /**
  * Created by binwang on 2015/11/11.
  */
+
+// add something
 public class WeatherStatusUtil {
     public static final int WEATHER_UNKNOW = -1;
     /**
-     * ·ç
+     * ï¿½ï¿½
      */
     public static final int WEATHER_WIND = 0;
     /**
-     * À×ÕóÓê
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_THUNDERSTORMS = 1;
     /**
-     * Óê¼ÐÑ©
+     * ï¿½ï¿½ï¿½Ñ©
      */
     public static final int WEATHER_RAIN_AND_SNOW = 2;
     /**
-     * ¶³Óê
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_FREEZING_RAIN = 3;
     /**
-     * Ð¡Óê
+     * Ð¡ï¿½ï¿½
      */
     public static final int WEATHER_DRIZZLE = 4;
     /**
-     * ÕóÓê
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_SHOWERS = 5;
     /**
@@ -39,39 +41,39 @@ public class WeatherStatusUtil {
      */
     public static final int WEATHER_SNOW = 6;
     /**
-     * ÕóÑ©
+     * ï¿½ï¿½Ñ©
      */
     public static final int WEATHER_SNOW_SHOWERS = 7;
     /**
-     * Óê¼Ð±ù±¢
+     * ï¿½ï¿½Ð±ï¿½
      */
     public static final int WEATHER_HAIL = 8;
     /**
-     * Îíö²
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_DUST = 9;
     /**
-     * Îí
+     * ï¿½ï¿½
      */
     public static final int WEATHER_FOGGY = 10;
     /**
-     * ÒõÌì
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_COLD = 11;
     /**
-     * ¶àÔÆ
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_CLOUDY = 12;
     /**
-     * Çç
+     * ï¿½ï¿½
      */
     public static final int WEATHER_SUNNY = 13;
     /**
-     * ´óÑ©
+     * ï¿½ï¿½Ñ©
      */
     public static final int WEATHER_HEAVY_SNOW = 14;
     /**
-     * ´óÓê
+     * ï¿½ï¿½ï¿½ï¿½
      */
     public static final int WEATHER_HEAVY_RAIN = 15;
     private static SparseIntArray sCodeTypeArray;
