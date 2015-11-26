@@ -1,6 +1,8 @@
 package com.wangbai.weather;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 
 import com.umeng.analytics.MobclickAgent;
 
@@ -18,5 +20,10 @@ public class BaseActivity extends Activity{
     protected void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
     }
 }
