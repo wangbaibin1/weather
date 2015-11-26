@@ -22,8 +22,4 @@ public class BaseActivity extends Activity{
         MobclickAgent.onResume(this);
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-    }
 }
