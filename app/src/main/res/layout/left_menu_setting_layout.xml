@@ -2,25 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/setting_background"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:text="@string/setting"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:background="@drawable/list_item_selector"/>
 
-    <TextView
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="#D1D1D1" />
+
+
+    <RelativeLayout
         android:id="@+id/city_setting"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@drawable/list_item_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:text="@string/setting_city"
-        android:textSize="18dp" />
+        android:background="@drawable/list_item_selector">
+
+        <ImageView
+            android:id="@+id/citysetting_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/citysetting"/>
+
+        <TextView
+            android:id="@+id/city_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_toRightOf="@id/citysetting_icons"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/setting_city"
+            android:textSize="18dp" />
+
+
+        <ImageView
+            android:id="@+id/notification_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
@@ -35,11 +71,20 @@
         android:background="@drawable/list_item_selector"
         android:paddingLeft="15dp">
 
+        <ImageView
+            android:id="@+id/notifcationsetting_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/notification"/>
+
         <TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/notifcationsetting_icons"
+            android:paddingLeft="10dp"
             android:gravity="center_vertical"
             android:text="@string/setting_notification"
             android:textSize="18dp" />
@@ -59,31 +104,89 @@
         android:layout_height="0.7dp"
         android:background="#D1D1D1" />
 
-
-    <TextView
-        android:id="@+id/feedback"
+    <RelativeLayout
+        android:id="@+id/city_setting"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@drawable/list_item_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:text="@string/setting_feedback"
-        android:textSize="18dp" />
+        android:paddingLeft="15dp">
+
+        <ImageView
+            android:id="@+id/feedback_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/problem"/>
+
+        <TextView
+            android:id="@+id/feedback"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_toRightOf="@id/feedback_icons"
+            android:paddingLeft="10dp"
+            android:background="@drawable/list_item_selector"
+            android:gravity="center_vertical"
+            android:text="@string/setting_feedback"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/notification_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/arrow" />
+
+
+    </RelativeLayout>
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
         android:background="#D1D1D1" />
 
-
-    <TextView
-        android:id="@+id/about"
+    <RelativeLayout
+        android:id="@+id/city_setting"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@drawable/list_item_selector"
-        android:gravity="center_vertical"
-        android:paddingLeft="15dp"
-        android:text="@string/setting_about"
-        android:textSize="18dp" />
+        android:paddingLeft="15dp">
+
+        <ImageView
+            android:id="@+id/about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/help"/>
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@drawable/list_item_selector"
+            android:layout_toRightOf="@id/about_icon"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/setting_about"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/notification_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="#D1D1D1" />
+
 
 </LinearLayout>

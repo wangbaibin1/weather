@@ -15,6 +15,7 @@ import com.wangbai.weather.util.DenstyUtil;
  * Created by binwang on 2015/11/23.
  */
 public class WeatherListView extends ListView {
+
     private float mCurrentMarginTop;
     private float mMinMoveDistance;
 
