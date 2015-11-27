@@ -12,7 +12,8 @@
         android:paddingLeft="15dp"
         android:text="@string/setting"
         android:textSize="20dp"
-        android:background="@drawable/list_item_selector"/>
+        android:textColor="#FFFFFF"
+        android:background="@color/setting_title_background"/>
 
 
     <View

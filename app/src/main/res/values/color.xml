@@ -5,5 +5,9 @@
 <color name="button_pressed">#32000000</color>
 <color name="setting_background">#F4F5F5</color>
 
+    <color name="addcity_background">#2B393E</color>
+
+    <color name="setting_title_background">#2B393E</color>
+
 
 </resources>

@@ -4,15 +4,34 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#4169E1"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:text="@string/city_add_title"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp" />
+        android:layout_height="60dp"
+        android:background="@color/addcity_background">
+
+        <ImageView
+            android:id="@+id/arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="15dp"
+            android:src="@drawable/arrow_left" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/arrow_left"
+            android:paddingLeft="10dp"
+            android:text="@string/city_add_title"
+            android:layout_centerVertical="true"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+
 
     <EditText
         android:id="@+id/search_edit"
