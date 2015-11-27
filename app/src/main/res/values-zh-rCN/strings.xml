@@ -50,24 +50,24 @@
     <string name="weather_46">snow showers</string>
     <string name="weather_47">isolated thundershowers</string>
 
-    <string name="exit_tips">Press again to exit</string>
-    <string name="location_success">Location Success</string>
-    <string name="location_fail">Location Fail</string>
-    <string name="location_going">Location...</string>
+    <string name="exit_tips">再按一次退出程序</string>
+    <string name="location_success">定位成功</string>
+    <string name="location_fail">定位失败</string>
+    <string name="location_going">定位中...</string>
 
-    <string name="setting">Setting</string>
-    <string name="setting_city">City Manager</string>
-    <string name="setting_notification">Enable notification</string>
-    <string name="setting_feedback">Feed back</string>
-    <string name="setting_about">About</string>
-    <string name="city_manager">City Manager</string>
-    <string name="city_add_bt">Add</string>
-    <string name="city_remove">Remove</string>
-    <string name="city_add_title">City Add</string>
-    <string name="weather_updating">Weather updating...</string>
-    <string name="about_us">About Us</string>
-    <string name="search_city">Search City</string>
-    <string name="hot_city">Hot City</string>
-    <string name="handle_up_update">Loose to update</string>
-    <string name="no_weather">Fail to get weather</string>
+    <string name="setting">设置</string>
+    <string name="setting_city">城市管理</string>
+    <string name="setting_notification">开启通知栏</string>
+    <string name="setting_feedback">用户反馈</string>
+    <string name="setting_about">关于</string>
+    <string name="city_manager">城市管理</string>
+    <string name="city_add_bt">添加</string>
+    <string name="city_remove">移除</string>
+    <string name="city_add_title">城市添加</string>
+    <string name="weather_updating">天气更新中...</string>
+    <string name="about_us">关于我们</string>
+    <string name="search_city">搜索城市</string>
+    <string name="hot_city">热门城市</string>
+    <string name="handle_up_update">松手即可更新</string>
+    <string name="no_weather">还没获取到天气</string>
 </resources>
