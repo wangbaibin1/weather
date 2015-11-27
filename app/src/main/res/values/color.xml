@@ -6,8 +6,8 @@
 <color name="setting_background">#F4F5F5</color>
 
     <color name="addcity_background">#2B393E</color>
-
     <color name="setting_title_background">#2B393E</color>
+    <color name="notification_bar_background">#000000</color>
 
 
 </resources>
