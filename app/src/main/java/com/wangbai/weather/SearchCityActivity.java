@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.wangbai.weather.db.LocalCityDbManager;
@@ -29,6 +32,7 @@ import de.greenrobot.event.EventBus;
  * Created by binwang on 2015/11/10.
  */
 public class SearchCityActivity extends BaseActivity {
+    private ImageView mSearchingImg;
     private EditText mEditTextView;
     private ListView mResultListView;
     private SearchResultListAdapter mAdapter;
@@ -41,6 +45,7 @@ public class SearchCityActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
 
+        mSearchingImg = (ImageView) findViewById(R.id.searching_icon);
         mEditTextView = (EditText) findViewById(R.id.search_edit);
         mResultListView = (ListView) findViewById(R.id.result_list);
         mAdapter = new SearchResultListAdapter(this);
@@ -51,48 +56,60 @@ public class SearchCityActivity extends BaseActivity {
         mGridView.setAdapter(mCityGridAdapter);
 
         mResultListView.setOnItemClickListener(mOnItemClickListener);
-        mEditTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
-                new Thread() {
-                    @Override
-                    public void run() {
-                        super.run();
-                        URL url = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestSearchCitysUrl(charSequence.toString()));
-                        if (url == null) {
-                            return;
-                        }
-                        List<HashMap<String, String>> result = YaHooWeatherUtils.sendRequestAndParseResult(url, "");
-                        if (result == null || result.isEmpty()) {
-                            return;
-                        }
-                        List<SearResultData> datas = toSearResultDatas(result);
-                        mAdapter.setDatas(datas);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        });
-
-                    }
-                }.start();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
+        mEditTextView.addTextChangedListener(mTextWatcher);
 
         loadLocalCityData();
     }
+
+    private TextWatcher mTextWatcher = new TextWatcher(){
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(final CharSequence charSequence, int i, int i1, int i2) {
+            mSearchingImg.setVisibility(View.VISIBLE);
+            mSearchingImg.setAnimation(android.view.animation.AnimationUtils.loadAnimation(SearchCityActivity.this, R.anim.update_weather_rotate));
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    URL url = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestSearchCitysUrl(charSequence.toString()));
+                    if (url == null) {
+                        return;
+                    }
+                    List<HashMap<String, String>> result = YaHooWeatherUtils.sendRequestAndParseResult(url, "");
+                    if (result == null || result.isEmpty()) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mSearchingImg.clearAnimation();
+                                mSearchingImg.setVisibility(View.GONE);
+                            }
+                        });
+                        return;
+                    }
+                    List<SearResultData> datas = toSearResultDatas(result);
+                    mAdapter.setDatas(datas);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mAdapter.notifyDataSetChanged();
+                            mSearchingImg.clearAnimation();
+                            mSearchingImg.setVisibility(View.GONE);
+                        }
+                    });
+
+                }
+            }.start();
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
 
     private void loadLocalCityData(){
         List<WeatherTable> weatherTables =   LocalCityDbManager.queryWorldCityTableByCityName(this, "");
@@ -143,4 +160,7 @@ public class SearchCityActivity extends BaseActivity {
         context.startActivity(new Intent(context, SearchCityActivity.class));
     }
 
+    public void onClickBack(View view){
+        finish();
+    }
 }

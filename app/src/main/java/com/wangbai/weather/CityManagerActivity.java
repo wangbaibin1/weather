@@ -65,10 +65,15 @@ public class CityManagerActivity extends BaseActivity{
 
     private void loadData(){
         mCurrentWoid = ShareConfigManager.getInstance(this).getCurrentCityWoid();
-        mAddedCityAdapter.addWeatherTables(WeatherDbProviderManager.getInstance(this).quaryWeatherData(true,""));
+        mAddedCityAdapter.addWeatherTables(WeatherDbProviderManager.getInstance(this).quaryWeatherData(true, ""));
     }
 
     public static void startActivity(Context context){
-        context.startActivity(new Intent(context,CityManagerActivity.class));
+        context.startActivity(new Intent(context, CityManagerActivity.class));
     }
+
+    public void onClickBack(View view){
+        finish();
+    }
+
 }

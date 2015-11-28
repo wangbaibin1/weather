@@ -15,6 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:paddingLeft="15dp"
+            android:onClick="onClickBack"
+            android:clickable="true"
             android:src="@drawable/arrow_left" />
 
 
@@ -32,23 +34,35 @@
     </RelativeLayout>
 
 
-
-    <EditText
-        android:id="@+id/search_edit"
+    <RelativeLayout
+        android:id="@+id/search_layout"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
         android:layout_marginTop="10dp"
-        android:drawablePadding="5dp"
-        android:drawableRight="@drawable/search"
-        android:background="@drawable/roundrect_search"
+        android:orientation="horizontal">
 
-        android:gravity="center"
-        android:textColor="#111111"
-        android:textColorHint="#7F999999"
-        android:hint="@string/search_city" />
+        <EditText
+            android:id="@+id/search_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/roundrect_search"
+            android:gravity="center"
+            android:hint="@string/search_city"
+            android:textColor="#111111"
+            android:textColorHint="#7F999999" />
 
+        <ImageView
+            android:id="@+id/searching_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:src="@drawable/searching" />
+    </RelativeLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

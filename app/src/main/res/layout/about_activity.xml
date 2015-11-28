@@ -9,14 +9,26 @@
         android:background="#4169E1"
         android:layout_height="50dp">
 
-        <TextView
+        <ImageView
+            android:id="@+id/arrow_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:onClick="onClickBack"
+            android:paddingLeft="15dp"
+            android:clickable="true"
+            android:src="@drawable/arrow_left" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/arrow_left"
             android:paddingLeft="10dp"
+            android:text="@string/about_us"
+            android:layout_centerVertical="true"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
-            android:text="@string/about_us" />
+            android:textSize="20dp" />
     </RelativeLayout>
 
     <LinearLayout
