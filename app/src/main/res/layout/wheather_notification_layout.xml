@@ -10,13 +10,14 @@
         android:layout_height="50dp"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
+        android:layout_marginLeft="10dp"
         android:layout_centerVertical="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/weather_icon"
         android:orientation="vertical">
 
@@ -25,13 +26,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:textSize="15dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/weather_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:textColor="#FFFFFF"
             android:textSize="15dp" />
 
@@ -43,6 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <TextView

@@ -33,6 +33,8 @@ public class ForeCastView extends LinearLayout {
     }
 
     private void init(Context context) {
+
+        // 定义背景的效果
         setOrientation(VERTICAL);
         setBackgroundColor(0x4c333333);
         mContext = context;
@@ -56,9 +58,15 @@ public class ForeCastView extends LinearLayout {
                 view.findViewById(R.id.split).setVisibility(VISIBLE);
             }
 
+
+            // 定义天气View的的效果
             ((TextView) view.findViewById(R.id.day)).setText(table.day);
+            ((TextView) view.findViewById(R.id.day)).setPadding(10,0,0,0);
+
             ((TextView) view.findViewById(R.id.tempreture)).setText(table.low + "~" + table.high);
+
             WeatherStatusUtil.setForecastIcon(((ImageView) view.findViewById(R.id.weather_icon)), table.code);
+
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, DenstyUtil.dip2px(mContext, 60));
             addView(view, lp);
         }

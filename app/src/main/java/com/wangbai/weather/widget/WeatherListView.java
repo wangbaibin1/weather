@@ -36,8 +36,6 @@ public class WeatherListView extends ListView {
         mCurrentMarginTop = mBaseMargin;
         onScroll(mCurrentMarginTop, false);
     }
-
-
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (handleEvent(ev)) {

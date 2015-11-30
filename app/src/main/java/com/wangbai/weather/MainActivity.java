@@ -59,6 +59,8 @@ public class MainActivity extends BaseActivity {
             List<WeatherTable> weatherTableList = WeatherDbProviderManager.getInstance(this).quaryWeatherData(true, woid);
             if (weatherTableList != null && !weatherTableList.isEmpty()) {
                 cityOrWeatherUpdateUI(weatherTableList.get(0));
+
+
                 if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTableList.get(0))) {
                     updateWeatherInfo(weatherTableList.get(0));
                 }
@@ -229,7 +231,7 @@ public class MainActivity extends BaseActivity {
 
     public void cityOrWeatherUpdateUI(WeatherTable weatherTable) {
         if (weatherTable == null) {
-            return;
+            weatherTable = weatherTable.initData();//调试用，不然定位不到，就一直没有数据，挺烦的
         }
         mWeatherTable = weatherTable;
         mAdapter.addTodayInfo(weatherTable);
