@@ -39,7 +39,12 @@
         <activity android:name=".CityManagerActivity"/>
 
         <activity android:name=".AboutActivity"/>
-        <activity android:name="com.umeng.fb.ConversationActivity" />
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.umeng.fb.ContactActivity"
+            android:theme="@android:style/Theme.NoTitleBar" />
 
         <service android:name=".MainService"
 

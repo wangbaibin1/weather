@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:onClick="onClickBack"
             android:clickable="true"
             android:src="@drawable/arrow_left" />
