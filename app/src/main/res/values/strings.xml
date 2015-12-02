@@ -70,4 +70,9 @@
     <string name="hot_city">Hot City</string>
     <string name="handle_up_update">Loose to update</string>
     <string name="no_weather">Fail to get weather</string>
+
+    <string name="publish_just_now">Just Now Publish</string>
+    <string name="publish_minutes_ago">%d minutes ago publish</string>
+    <string name="publish_hours_ago">%d hours ago publish</string>
+    <string name="publish_time">%s publish</string>
 </resources>

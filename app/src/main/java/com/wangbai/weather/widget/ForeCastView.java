@@ -61,7 +61,6 @@ public class ForeCastView extends LinearLayout {
 
             // 定义天气View的的效果
             ((TextView) view.findViewById(R.id.day)).setText(table.day);
-            ((TextView) view.findViewById(R.id.day)).setPadding(10,0,0,0);
 
             ((TextView) view.findViewById(R.id.tempreture)).setText(table.low + "~" + table.high);
 

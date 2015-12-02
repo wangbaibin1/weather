@@ -70,4 +70,9 @@
     <string name="hot_city">热门城市</string>
     <string name="handle_up_update">松手即可更新</string>
     <string name="no_weather">还没获取到天气</string>
+
+    <string name="publish_just_now">刚刚发布</string>
+    <string name="publish_minutes_ago">%d 分钟前发布</string>
+    <string name="publish_hours_ago">%d 小时前发布</string>
+    <string name="publish_time">%s 发布</string>
 </resources>

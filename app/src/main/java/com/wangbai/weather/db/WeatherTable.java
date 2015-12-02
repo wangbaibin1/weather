@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
+import com.wangbai.weather.MainApplication;
+import com.wangbai.weather.R;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -140,15 +143,15 @@ public class WeatherTable {
 
         if (result.equals(formatDate("MM-dd", new Date(System.currentTimeMillis())))) {
             if ((System.currentTimeMillis() - time) / (1000 * 60) == 0) {
-                return "just now publish";
+                return MainApplication.getContext().getString(R.string.publish_just_now);
             } else if ((System.currentTimeMillis() - time) / (1000 * 60 * 60) == 0) {
-                return (System.currentTimeMillis() - time) / (1000 * 60) + " minutes ago publish";
+                return MainApplication.getContext().getString(R.string.publish_minutes_ago,(System.currentTimeMillis() - time) / (1000 * 60));
             } else {
-                return (System.currentTimeMillis() - time) / (1000 * 60 * 60) + " hours ago publish";
+                return MainApplication.getContext().getString(R.string.publish_hours_ago,(System.currentTimeMillis() - time) / (1000 * 60 * 60));
             }
         }
 
-        return result + " publish";
+        return MainApplication.getContext().getString(R.string.publish_time,result);
     }
 
     private static long toWeatherTimeStamp(String pubData) {

@@ -97,6 +97,8 @@ public class MainActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        mUpdateWeatherVeiw.show(false, "");
+                        mListView.backToBegin();
                         Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
                     }
                 });
