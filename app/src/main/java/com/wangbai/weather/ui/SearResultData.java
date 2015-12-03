@@ -1,4 +1,4 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
 /**
  * Created by binwang on 2015/11/10.

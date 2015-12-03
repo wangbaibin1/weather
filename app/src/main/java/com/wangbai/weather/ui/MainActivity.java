@@ -1,4 +1,4 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.fb.FeedbackAgent;
 import com.wangbai.weather.Notification.WeatherNotification;
+import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
 import com.wangbai.weather.event.CityWeatherUpdateEvent;
@@ -43,6 +44,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SplashActivity.startActivity(this);
+
         initView();
 
         initLeftMenu();
@@ -50,6 +54,8 @@ public class MainActivity extends BaseActivity {
         initData();
 
         EventBus.getDefault().register(this);
+
+
     }
 
     private void initData() {
@@ -128,6 +134,9 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void startUpdate() {
+            if(mWeatherTable == null){
+                return;
+            }
             updateWeatherInfo(mWeatherTable);
         }
 
@@ -143,6 +152,11 @@ public class MainActivity extends BaseActivity {
                 }
 
             }
+        }
+
+        @Override
+        public boolean isDataEmpty() {
+            return mWeatherTable == null;
         }
     };
 
@@ -216,6 +230,16 @@ public class MainActivity extends BaseActivity {
                     AboutActivity.startActivity(MainActivity.this);
                     break;
             }
+            mSlidingMenu.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (mSlidingMenu.isMenuShowing()) {
+                        mSlidingMenu.toggle();
+                    }
+                }
+            },200);
+
+
 
         }
     };

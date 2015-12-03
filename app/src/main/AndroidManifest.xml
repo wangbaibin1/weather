@@ -17,7 +17,7 @@
 
     <application
         android:allowBackup="true"
-        android:name="com.wangbai.weather.MainApplication"
+        android:name=".ui.MainApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -26,7 +26,8 @@
             android:value="564c492267e58e76ff00100e" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
+            android:theme="@style/main_theme"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,11 +36,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SearchCityActivity"/>
+        <activity android:name=".ui.SearchCityActivity" />
 
-        <activity android:name=".CityManagerActivity"/>
+        <activity android:name=".ui.CityManagerActivity" />
+        <activity android:name=".ui.AboutActivity"/>
+        <activity android:name=".ui.SplashActivity" />
 
-        <activity android:name=".AboutActivity"/>
         <activity
             android:name="com.umeng.fb.ConversationActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
@@ -47,9 +49,7 @@
             android:name="com.umeng.fb.ContactActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
 
-        <service android:name=".MainService"
-
-            />
+        <service android:name=".ui.MainService" />
 
         <provider
             android:name=".db.CityProvider"

@@ -3,7 +3,7 @@ package com.wangbai.weather.loader;
 import android.os.Handler;
 import android.os.HandlerThread;
 
-import com.wangbai.weather.SearResultData;
+import com.wangbai.weather.ui.SearResultData;
 import com.wangbai.weather.util.YaHooWeatherUtils;
 
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

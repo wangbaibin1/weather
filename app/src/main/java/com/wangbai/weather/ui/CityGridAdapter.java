@@ -1,14 +1,14 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
 import com.wangbai.weather.event.CityWeatherUpdateEvent;

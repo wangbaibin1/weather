@@ -41,12 +41,17 @@
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
             android:text="王白天气软件" />
 
         <TextView
             android:id="@+id/verson_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18dp"
             android:text="v1.0.0" />
 
     </LinearLayout>

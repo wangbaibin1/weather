@@ -95,6 +95,9 @@ public class WeatherListView extends ListView {
     private boolean isIntercept = false;
 
     private boolean handleEvent(MotionEvent event) {
+        if (mIsUpdating || mScrollListener.isDataEmpty()) {
+            return false;
+        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 beforeY = event.getRawY();
@@ -119,10 +122,6 @@ public class WeatherListView extends ListView {
                 float distance = event.getRawY() - beforeY;
                 beforeY = event.getRawY();
                 if (Math.abs(distance) <= 0) {
-                    return false;
-                }
-
-                if (mIsUpdating) {
                     return false;
                 }
 
@@ -177,6 +176,8 @@ public class WeatherListView extends ListView {
         void startUpdate();
 
         void canUpdate(boolean isCan);
+
+        boolean isDataEmpty();
     }
 
 }

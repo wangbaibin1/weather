@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.text.TextUtils;
 
-import com.wangbai.weather.SearResultData;
+import com.wangbai.weather.ui.SearResultData;
 
 import java.util.ArrayList;
 import java.util.List;

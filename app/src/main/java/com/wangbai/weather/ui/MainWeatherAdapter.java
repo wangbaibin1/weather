@@ -1,4 +1,4 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
 import android.content.Context;
 import android.view.View;

@@ -1,6 +1,5 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +7,6 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -17,15 +14,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.wangbai.weather.R;
 import com.wangbai.weather.db.LocalCityDbManager;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
 import com.wangbai.weather.event.CityWeatherUpdateEvent;
 import com.wangbai.weather.loader.CitySearchLoader;
 import com.wangbai.weather.util.NetWorkUtil;
-import com.wangbai.weather.util.YaHooWeatherUtils;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

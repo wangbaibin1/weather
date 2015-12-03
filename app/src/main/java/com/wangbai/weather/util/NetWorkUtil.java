@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.wangbai.weather.MainApplication;
+import com.wangbai.weather.ui.MainApplication;
 
 /**
  * Created by binwang on 2015/12/2.

@@ -1,10 +1,11 @@
-package com.wangbai.weather;
+package com.wangbai.weather.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.wangbai.weather.R;
 
 /**
  * Created by binwang on 2015/11/17.

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
-import com.wangbai.weather.MainApplication;
+import com.wangbai.weather.ui.MainApplication;
 import com.wangbai.weather.R;
 
 import java.text.ParseException;
