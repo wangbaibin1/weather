@@ -31,12 +31,6 @@ public class TodayWeatherVeiw extends LinearLayout {
         init(context);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), DenstyUtil.getScreenHeight(getContext()) / 2);
-    }
-
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.today_weather_layout, this);
         mweather_info = (TextView) findViewById(R.id.weather_info);
@@ -53,10 +47,8 @@ public class TodayWeatherVeiw extends LinearLayout {
         if(TextUtils.isEmpty(info.temperature)){
             mtigan_tm.setText("~");
         } else{
-            mtigan_tm.setText(info.temperature + "°");
+            mtigan_tm.setText(getContext().getString(R.string.show_temper , info.temperature));
         }
-
-//        mimg_tem.setImageResource(R.drawable.sunny_sun);
 
         WeatherStatusUtil.setForecastIcon(mimg_tem, info.code);
 

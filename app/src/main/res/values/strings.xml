@@ -75,4 +75,5 @@
     <string name="publish_minutes_ago">%d minutes ago publish</string>
     <string name="publish_hours_ago">%d hours ago publish</string>
     <string name="publish_time">%s publish</string>
+    <string name="show_temper">%s°</string>
 </resources>

@@ -21,7 +21,7 @@ public class WeatherRemoteViews extends RemoteViews{
 
     public WeatherRemoteViews updateWeatherInfo(WeatherTable weatherTable){
         setImageViewResource(R.id.weather_icon, WeatherStatusUtil.getForecastIconResid(weatherTable.code));
-        setTextViewText(R.id.temperture, weatherTable.temperature + weatherTable.temperUnit);
+        setTextViewText(R.id.temperture, mContext.getString(R.string.show_temper , weatherTable.temperature));
         setTextViewText(R.id.weather_info,mContext.getString(WeatherStatusUtil.CODE_TO_WEATHERINFO[weatherTable.code]));
 
         setTextViewText(R.id.city,weatherTable.cityName);

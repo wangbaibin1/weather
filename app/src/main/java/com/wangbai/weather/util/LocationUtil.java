@@ -1,21 +1,17 @@
 package com.wangbai.weather.util;
 
 import android.content.Context;
-import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.wangbai.weather.db.WeatherTable;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by binwang on 2015/11/10.
@@ -25,14 +21,9 @@ public class LocationUtil {
     private static final int TWO_MINUTES = 1000 * 60 * 2;
     private static final int TEN_SECONDS = 10000;
     private static final int TEN_METERS = 10;
-    private boolean mGeocoderAvailable;
     private Context mContext;
 
     public interface LocationListenter {
-//        void cityFinish(String city);
-//
-//        void cityCodeFinish(String cityCode);
-
         void weatherFinish(WeatherTable weatherTable);
 
         void fail();
@@ -41,7 +32,6 @@ public class LocationUtil {
     public LocationUtil(Context context) {
         mContext = context;
         mLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
-        mGeocoderAvailable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && Geocoder.isPresent();
     }
 
     public void startLocationAndUpdateUI(LocationListenter locationListenter) {
@@ -168,53 +158,21 @@ public class LocationUtil {
             public void run() {
                 URL url = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestWoeidUrl(String.valueOf(location.getLatitude()), String.valueOf(location.getLongitude())));
                 if (url == null) {
+                    locationListenter.fail();
                     return;
                 }
+
                 String cityCode = YaHooWeatherUtils.sendRequestAndParseResultLocation(url, "");
+                if(TextUtils.isEmpty(cityCode)){
+                    locationListenter.fail();
+                    return;
+                }
 
                 URL weatherurl = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestWeatherInfoUrl(cityCode, ShareConfigManager.getInstance(mContext).getTempertureUnit()));
                 WeatherTable info = YaHooWeatherUtils.sendRequestAndParseResultWeather(weatherurl, "");
                 locationListenter.weatherFinish(info);
             }
         }).start();
-        if (mGeocoderAvailable) {
-            doReverseGeocoding(location);
-        }
     }
 
-    private void doReverseGeocoding(Location location) {
-        (new ReverseGeocodingTask(mContext)).execute(new Location[]{location});
-    }
-
-    private class ReverseGeocodingTask extends AsyncTask<Location, Void, Void> {
-        Context mContext;
-
-        public ReverseGeocodingTask(Context context) {
-            super();
-            mContext = context;
-        }
-
-        @Override
-        protected Void doInBackground(Location... params) {
-            Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
-
-            Location loc = params[0];
-            List<Address> addresses = null;
-            try {
-                addresses = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Update address field with the exception.
-                //Message.obtain(mHandler, UPDATE_ADDRESS, e.toString()).sendToTarget();
-            }
-
-            if (addresses != null && addresses.size() > 0) {
-                Address address = addresses.get(0);
-                String cityName = address.getLocality();
-
-            }
-
-            return null;
-        }
-    }
 }
