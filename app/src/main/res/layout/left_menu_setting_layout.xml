@@ -44,6 +44,7 @@
             android:background="@drawable/list_item_selector"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
+            android:textColor="@color/text_color"
             android:text="@string/setting_city"
             android:textSize="18dp" />
 
@@ -88,6 +89,7 @@
             android:paddingLeft="10dp"
             android:gravity="center_vertical"
             android:text="@string/setting_notification"
+            android:textColor="@color/text_color"
             android:textSize="18dp" />
 
         <ImageView
@@ -128,6 +130,7 @@
             android:background="@drawable/list_item_selector"
             android:gravity="center_vertical"
             android:text="@string/setting_feedback"
+            android:textColor="@color/text_color"
             android:textSize="18dp" />
 
         <ImageView
@@ -170,6 +173,7 @@
             android:layout_toRightOf="@id/about_icon"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
+            android:textColor="@color/text_color"
             android:text="@string/setting_about"
             android:textSize="18dp" />
 

@@ -8,6 +8,7 @@
     <color name="addcity_background">#2B393E</color>
     <color name="setting_title_background">#2B393E</color>
     <color name="notification_bar_background">#000000</color>
+    <color name="text_color">#606060</color>
 
 
 </resources>
