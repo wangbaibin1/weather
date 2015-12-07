@@ -37,6 +37,29 @@ public class WeatherDbProviderManager {
 
     }
 
+    public void insertLocationWeatherData(WeatherTable weatherTable) {
+        if (weatherTable == null) {
+            return;
+        }
+
+        if(TextUtils.isEmpty(weatherTable.cityWeid)){
+            mContext.getContentResolver().insert(CityProvider.CONTENT_URI_FOR_WEATHER, weatherTable.toContentValues());
+        } else {
+            mContext.getContentResolver().update(CityProvider.CONTENT_URI_FOR_WEATHER,
+                    weatherTable.toContentValues(),
+                    WeatherTable.Columns.LOCATION + "=?",
+                    new String[]{String.valueOf(WeatherTable.LOCATION_SIGN)});
+        }
+        List<ForeCastTable> foreCastTables = weatherTable.getForecastList();
+        if (foreCastTables == null || foreCastTables.size() <= 0) {
+            return;
+        }
+        if(TextUtils.isEmpty(weatherTable.cityWeid)){
+            return;
+        }
+        insertForeCastTable(foreCastTables,weatherTable.cityWeid);
+    }
+
     public void insertWeatherData(WeatherTable weatherTable) {
         if (weatherTable == null) {
             return;

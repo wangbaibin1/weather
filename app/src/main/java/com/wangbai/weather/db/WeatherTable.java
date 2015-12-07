@@ -20,7 +20,8 @@ import java.util.Locale;
  * Created by binwang on 2015/11/12.
  */
 public class WeatherTable {
-    public static final String LOCATION_WOID = "location";
+    public static final int LOCATION_SIGN = 1;
+
     public static final String TABLE_NAME = "forecast";
 
     public WeatherTable() {
@@ -37,6 +38,7 @@ public class WeatherTable {
         String MIN_T = "min_t";
         String T = "t";
         String PUB_D = "pub_d";
+        String LOCATION = "location";
         String UPDATE_TIME = "update_time";
     }
 
@@ -51,6 +53,7 @@ public class WeatherTable {
                 + Columns.MAX_T + " TEXT,"
                 + Columns.MIN_T + " TEXT,"
                 + Columns.PUB_D + " TEXT,"
+                + Columns.LOCATION + " INTEGER,"
                 + Columns.UPDATE_TIME + " INTEGER" + ");");
     }
 
@@ -69,6 +72,7 @@ public class WeatherTable {
         weatherTable.maxTemper = cursor.getString(cursor.getColumnIndex(Columns.MAX_T));
         weatherTable.minTemper = cursor.getString(cursor.getColumnIndex(Columns.MIN_T));
         weatherTable.pubDate = cursor.getString(cursor.getColumnIndex(Columns.PUB_D));
+        weatherTable.mLocation = cursor.getInt(cursor.getColumnIndex(Columns.LOCATION));
         weatherTable.mLastUpdateTime = cursor.getLong(cursor.getColumnIndex(Columns.UPDATE_TIME));
         return weatherTable;
     }
@@ -84,12 +88,13 @@ public class WeatherTable {
         contentValues.put(Columns.MAX_T, maxTemper);
         contentValues.put(Columns.MIN_T, minTemper);
         contentValues.put(Columns.PUB_D, pubDate);
+        contentValues.put(Columns.LOCATION, mLocation);
         contentValues.put(Columns.UPDATE_TIME, mLastUpdateTime);
         return contentValues;
     }
 
     public boolean isLocation(){
-        return LOCATION_WOID.equals(cityWeid);
+        return mLocation == LOCATION_SIGN;
     }
     public int _id;
     public String cityName;
@@ -100,6 +105,7 @@ public class WeatherTable {
     public String temperature;
     public long mLastUpdateTime;
     public String pubDate;
+    public int mLocation;
     public String maxTemper;
     public String minTemper;
     public ArrayList<ForeCastTable> mForeCastTableList;

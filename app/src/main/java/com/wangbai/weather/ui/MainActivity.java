@@ -246,7 +246,7 @@ public class MainActivity extends BaseActivity {
                             Toast.makeText(MainActivity.this, R.string.location_success, Toast.LENGTH_SHORT).show();
                             cityOrWeatherUpdateUI(weatherTable);
                             ShareConfigManager.getInstance(MainActivity.this).setCurrentCityWoid(weatherTable.cityWeid);
-                            WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(weatherTable);
+                            WeatherDbProviderManager.getInstance(MainActivity.this).insertLocationWeatherData(weatherTable);
                         }
                     }
                 });
@@ -268,7 +268,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void onHandleLocationEvent(LocationEvent event) {
-        WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(event.mWeatherTable);
+        WeatherDbProviderManager.getInstance(MainActivity.this).insertLocationWeatherData(event.mWeatherTable);
         mCityTitle.setText(event.mWeatherTable.cityName);
         startLocation();
     }

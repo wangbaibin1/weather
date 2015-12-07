@@ -75,7 +75,7 @@ public class LocalCityDbManager {
     private static void addLocationTable(List<WeatherTable> cityInfoList){
         WeatherTable table = new WeatherTable();
         table.cityName = MainApplication.getContext().getString(R.string.location);
-        table.cityWeid = WeatherTable.LOCATION_WOID;
+        table.mLocation = WeatherTable.LOCATION_SIGN;
 
         cityInfoList.add(table);
     }
