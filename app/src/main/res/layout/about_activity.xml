@@ -6,8 +6,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#4169E1"
-        android:layout_height="50dp">
+        android:layout_height="60dp"
+        android:background="@color/addcity_background">
 
         <ImageView
             android:id="@+id/arrow_left"
@@ -16,6 +16,7 @@
             android:layout_centerVertical="true"
             android:onClick="onClickBack"
             android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:clickable="true"
             android:src="@drawable/arrow_left" />
 
@@ -24,7 +25,6 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:layout_toRightOf="@id/arrow_left"
-            android:paddingLeft="10dp"
             android:text="@string/about_us"
             android:layout_centerVertical="true"
             android:textColor="#FFFFFF"

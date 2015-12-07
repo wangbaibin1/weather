@@ -14,8 +14,9 @@ import com.wangbai.weather.Notification.WeatherNotification;
 import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.event.CityWeatherUpdateEvent;
+import com.wangbai.weather.event.CityChangeEvent;
 import com.wangbai.weather.event.CurrentCityChangeEvent;
+import com.wangbai.weather.event.LocationEvent;
 import com.wangbai.weather.util.DenstyUtil;
 import com.wangbai.weather.util.LocationUtil;
 import com.wangbai.weather.util.ShareConfigManager;
@@ -45,7 +46,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SplashActivity.startActivity(this);
+//        SplashActivity.startActivity(this);
 
         initView();
 
@@ -74,43 +75,8 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        mUpdateWeatherVeiw.show(true, getString(R.string.location_going));
-        mListView.startUpdating();
-        LocationUtil locationUtil = new LocationUtil(this);
-        locationUtil.startLocationAndUpdateUI(new LocationUtil.LocationListenter() {
+        SearchCityActivity.startActivity(this);
 
-            @Override
-            public void weatherFinish(final WeatherTable weatherTable) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mUpdateWeatherVeiw.show(false, "");
-                        mListView.backToBegin();
-                        if (weatherTable == null || TextUtils.isEmpty(weatherTable.cityWeid)) {
-                            Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, R.string.location_success, Toast.LENGTH_SHORT).show();
-                            cityOrWeatherUpdateUI(weatherTable);
-                            ShareConfigManager.getInstance(MainActivity.this).setCurrentCityWoid(weatherTable.cityWeid);
-                            WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(weatherTable);
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void fail() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mUpdateWeatherVeiw.show(false, "");
-                        mListView.backToBegin();
-                        Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        });
     }
 
     private void initLeftMenu() {
@@ -134,6 +100,9 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void startUpdate() {
+            if (mListView.mIsUpdating || isDataEmpty()) {
+                return;
+            }
             if(mWeatherTable == null){
                 return;
             }
@@ -142,6 +111,9 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void canUpdate(boolean isCan) {
+            if (mListView.mIsUpdating || isDataEmpty()) {
+                return;
+            }
             if (isCan) {
                 mUpdateWeatherVeiw.show(false, getString(R.string.handle_up_update));
             } else {
@@ -245,19 +217,67 @@ public class MainActivity extends BaseActivity {
     };
 
     public void onEventMainThread(Object event) {
-        if (event instanceof CityWeatherUpdateEvent) {
-            onHandleCityWeatherUpdateEvent((CityWeatherUpdateEvent) event);
+        if (event instanceof CityChangeEvent) {
+            onHandleCityWeatherUpdateEvent((CityChangeEvent) event);
         } else if (event instanceof CurrentCityChangeEvent) {
             initData();
+        } else if(event instanceof LocationEvent){
+            onHandleLocationEvent((LocationEvent) event);
         }
 
+    }
+
+    private void startLocation(){
+        mUpdateWeatherVeiw.show(true, getString(R.string.location_going));
+        mListView.startUpdating();
+        LocationUtil locationUtil = new LocationUtil(this);
+        locationUtil.startLocationAndUpdateUI(new LocationUtil.LocationListenter() {
+
+            @Override
+            public void weatherFinish(final WeatherTable weatherTable) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mUpdateWeatherVeiw.show(false, "");
+                        mListView.backToBegin();
+                        if (weatherTable == null || TextUtils.isEmpty(weatherTable.cityWeid)) {
+                            Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, R.string.location_success, Toast.LENGTH_SHORT).show();
+                            cityOrWeatherUpdateUI(weatherTable);
+                            ShareConfigManager.getInstance(MainActivity.this).setCurrentCityWoid(weatherTable.cityWeid);
+                            WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(weatherTable);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void fail() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mUpdateWeatherVeiw.show(false, "");
+                        mListView.backToBegin();
+                        Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+    }
+
+    private void onHandleLocationEvent(LocationEvent event) {
+        WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(event.mWeatherTable);
+        mCityTitle.setText(event.mWeatherTable.cityName);
+        startLocation();
     }
 
     private WeatherTable mWeatherTable;
 
     public void cityOrWeatherUpdateUI(WeatherTable weatherTable) {
         if (weatherTable == null) {
-            weatherTable = weatherTable.initData();//调试用，不然定位不到，就一直没有数据，挺烦的
+            return;
         }
         mWeatherTable = weatherTable;
         mAdapter.addTodayInfo(weatherTable);
@@ -304,9 +324,11 @@ public class MainActivity extends BaseActivity {
         }.start();
     }
 
-    private void onHandleCityWeatherUpdateEvent(final CityWeatherUpdateEvent event) {
+    private void onHandleCityWeatherUpdateEvent(final CityChangeEvent event) {
         ShareConfigManager.getInstance(this).setCurrentCityWoid(event.mWeatherTable.cityWeid);
-
+        if(!event.mIsExist){
+            WeatherDbProviderManager.getInstance(MainActivity.this).insertWeatherData(event.mWeatherTable);
+        }
         cityOrWeatherUpdateUI(event.mWeatherTable);
 
         if (ShareConfigManager.getInstance(MainActivity.this).isNotificationOpen()) {

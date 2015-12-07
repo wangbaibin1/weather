@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.text.TextUtils;
 
 import com.wangbai.weather.ui.MainApplication;
 import com.wangbai.weather.R;
@@ -19,6 +20,7 @@ import java.util.Locale;
  * Created by binwang on 2015/11/12.
  */
 public class WeatherTable {
+    public static final String LOCATION_WOID = "location";
     public static final String TABLE_NAME = "forecast";
 
     public WeatherTable() {
@@ -38,29 +40,6 @@ public class WeatherTable {
         String UPDATE_TIME = "update_time";
     }
 
-    public WeatherTable initData()
-    {
-        WeatherTable weatherTable = new WeatherTable();
-
-        weatherTable._id= 0;
-        weatherTable.cityName = "Baibin" ;
-        weatherTable.countryName = "CHINA";
-        weatherTable.cityWeid= "HEHE";
-        weatherTable.temperUnit= "HEHE";
-        weatherTable.code = 0;
-        weatherTable.temperature = "28";
-        weatherTable.mLastUpdateTime = 0 ;
-        weatherTable.pubDate = "OK";
-        weatherTable.maxTemper = "0";
-        weatherTable.minTemper = "21";
-        weatherTable.mForeCastTableList = null;
-
-        return  weatherTable;
-
-    }
-
-
-
     public static void createTable(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + Columns._ID + " INTEGER PRIMARY KEY,"
                 + Columns.CITY + " TEXT,"
@@ -73,6 +52,10 @@ public class WeatherTable {
                 + Columns.MIN_T + " TEXT,"
                 + Columns.PUB_D + " TEXT,"
                 + Columns.UPDATE_TIME + " INTEGER" + ");");
+    }
+
+    public boolean isHaveSuccessUpdate(){
+        return !TextUtils.isEmpty(pubDate);
     }
 
     public static WeatherTable fromCusor(Cursor cursor) {
@@ -105,6 +88,9 @@ public class WeatherTable {
         return contentValues;
     }
 
+    public boolean isLocation(){
+        return LOCATION_WOID.equals(cityWeid);
+    }
     public int _id;
     public String cityName;
     public String countryName;

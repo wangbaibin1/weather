@@ -9,6 +9,7 @@ import android.content.Intent;
 import com.wangbai.weather.ui.MainActivity;
 import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherTable;
+import com.wangbai.weather.ui.MainApplication;
 
 /**
  * Created by binwang on 2015/11/12.
@@ -34,7 +35,7 @@ public class WeatherNotification {
 
     public void displayPermantNotification(WeatherTable weatherTable){
         int icon = R.mipmap.ic_launcher;
-        CharSequence tickerText = "Hello";
+        CharSequence tickerText = MainApplication.getContext().getString(R.string.app_name);
         long when = System.currentTimeMillis();
         Notification notification = new Notification(icon,tickerText,when);
         WeatherRemoteViews remoteViews = new WeatherRemoteViews(mContext);

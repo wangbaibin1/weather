@@ -34,7 +34,6 @@ public class ForeCastView extends LinearLayout {
 
     private void init(Context context) {
 
-        // 定义背景的效果
         setOrientation(VERTICAL);
         setBackgroundColor(0x4c333333);
         mContext = context;

@@ -11,7 +11,7 @@ import android.widget.ListView;
 import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.event.CityWeatherUpdateEvent;
+import com.wangbai.weather.event.CityChangeEvent;
 import com.wangbai.weather.event.CurrentCityChangeEvent;
 import com.wangbai.weather.util.ShareConfigManager;
 
@@ -46,7 +46,7 @@ public class CityManagerActivity extends BaseActivity{
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
 
-                EventBus.getDefault().post(new CityWeatherUpdateEvent().setData((WeatherTable) mAddedCityAdapter.getItem(position)));
+                EventBus.getDefault().post(new CityChangeEvent().setData((WeatherTable) mAddedCityAdapter.getItem(position),true));
             }
         });
 

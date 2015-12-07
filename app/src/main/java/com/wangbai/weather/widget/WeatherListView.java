@@ -81,7 +81,7 @@ public class WeatherListView extends ListView {
 
     }
 
-    private boolean mIsUpdating;
+    public boolean mIsUpdating;
 
     public void backToBegin() {
         mCurrentMarginTop = mBaseMargin;
@@ -95,9 +95,6 @@ public class WeatherListView extends ListView {
     private boolean isIntercept = false;
 
     private boolean handleEvent(MotionEvent event) {
-        if (mIsUpdating || mScrollListener.isDataEmpty()) {
-            return false;
-        }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 beforeY = event.getRawY();

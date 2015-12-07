@@ -18,12 +18,12 @@ import com.wangbai.weather.R;
 import com.wangbai.weather.db.LocalCityDbManager;
 import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.event.CityWeatherUpdateEvent;
+import com.wangbai.weather.event.CityChangeEvent;
+import com.wangbai.weather.event.LocationEvent;
 import com.wangbai.weather.loader.CitySearchLoader;
 import com.wangbai.weather.util.NetWorkUtil;
+import com.wangbai.weather.util.ShareConfigManager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -41,6 +41,8 @@ public class SearchCityActivity extends BaseActivity {
     private CityGridAdapter mCityGridAdapter;
     private CitySearchLoader mCitySearchLoader;
 
+    private List<WeatherTable> mHasAddedCitys;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +57,17 @@ public class SearchCityActivity extends BaseActivity {
         mGridView = (GridView) findViewById(R.id.gridview);
         mCityGridAdapter = new CityGridAdapter(this);
         mGridView.setAdapter(mCityGridAdapter);
+        mGridView.setOnItemClickListener(mGridOnItemClickListener);
 
         mResultListView.setOnItemClickListener(mOnItemClickListener);
         mEditTextView.addTextChangedListener(mTextWatcher);
 
+        loadHasAddedCity();
         loadLocalCityData();
+    }
+
+    private void loadHasAddedCity(){
+        mHasAddedCitys = WeatherDbProviderManager.getInstance(this).quaryWeatherData(false, "");
     }
 
     private TextWatcher mTextWatcher = new TextWatcher(){
@@ -77,7 +85,7 @@ public class SearchCityActivity extends BaseActivity {
             }
 
             if (!NetWorkUtil.isNetworkConnected()) {
-                Toast.makeText(SearchCityActivity.this,"Ã»ÍøÂç",Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchCityActivity.this,R.string.no_network,Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -120,55 +128,95 @@ public class SearchCityActivity extends BaseActivity {
 
 
     private void loadLocalCityData(){
+
         List<WeatherTable> weatherTables =   LocalCityDbManager.queryWorldCityTableByCityName(this, "");
 
         mCityGridAdapter.addTables(weatherTables);
         mCityGridAdapter.notifyDataSetChanged();
     }
 
-    private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
+    public boolean isHasAdded(String woeid){
+        if(mHasAddedCitys == null || mHasAddedCitys.isEmpty() || TextUtils.isEmpty(woeid)){
+            return false;
+        }
+
+       for(WeatherTable weatherTable : mHasAddedCitys){
+           if(woeid.equals(weatherTable.cityWeid)){
+               return true;
+           }
+       }
+
+        return false;
+    }
+    private AdapterView.OnItemClickListener mGridOnItemClickListener = new AdapterView.OnItemClickListener() {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            final WeatherTable weatherTable = (WeatherTable) mCityGridAdapter.getItem(position);
+            if(isHasAdded(weatherTable.cityWeid)){
+                Toast.makeText(SearchCityActivity.this,R.string.have_added_tips,Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Intent intent = new Intent(SearchCityActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent);
 
+            if (weatherTable.isLocation()) {
+                EventBus.getDefault().post(new LocationEvent().setData(weatherTable));
+            } else {
+                WeatherDbProviderManager.getInstance(SearchCityActivity.this).insertWeatherData(weatherTable);
+                EventBus.getDefault().post(new CityChangeEvent().setData(weatherTable,false));
+            }
+        }
+    };
+
+
+    private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             SearResultData searResultData = (SearResultData) mAdapter.getItem(position);
+            if(isHasAdded(searResultData.mWoeid)){
+                Toast.makeText(SearchCityActivity.this,R.string.have_added_tips,Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent = new Intent(SearchCityActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+
+
             WeatherTable weatherTable = new WeatherTable();
             weatherTable.cityName = searResultData.mName;
             weatherTable.countryName = searResultData.mCountry;
             weatherTable.cityWeid = searResultData.mWoeid;
 
             WeatherDbProviderManager.getInstance(SearchCityActivity.this).insertWeatherData(weatherTable);
-            EventBus.getDefault().post(new CityWeatherUpdateEvent().setData(weatherTable));
+            EventBus.getDefault().post(new CityChangeEvent().setData(weatherTable,false));
 
 
         }
     };
-
-    private List<SearResultData> toSearResultDatas(List<HashMap<String, String>> result) {
-        List<SearResultData> datas = new ArrayList<>();
-        for (HashMap<String, String> item : result) {
-            SearResultData data = new SearResultData();
-            data.mName = item.get("name");
-            data.mCountry = item.get("country");
-            data.mWoeid = item.get("woeid");
-
-            data.mAdmin1 = item.get("admin1");
-            data.mAdmin2 = item.get("admin2");
-            data.mAdmin3 = item.get("admin3");
-            datas.add(data);
-        }
-        return datas;
-
-    }
 
     public static void startActivity(Context context) {
         context.startActivity(new Intent(context, SearchCityActivity.class));
     }
 
     public void onClickBack(View view){
+        if (TextUtils.isEmpty(ShareConfigManager.getInstance(this).getCurrentCityWoid())) {
+            Toast.makeText(this,R.string.add_city_tips,Toast.LENGTH_SHORT).show();
+            return;
+        }
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (TextUtils.isEmpty(ShareConfigManager.getInstance(this).getCurrentCityWoid())) {
+            Toast.makeText(this,R.string.add_city_tips,Toast.LENGTH_SHORT).show();
+            return;
+        }
+        super.onBackPressed();
     }
 }

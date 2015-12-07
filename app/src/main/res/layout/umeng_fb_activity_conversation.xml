@@ -12,14 +12,15 @@
         android:background="@color/addcity_background"
         android:layout_alignParentTop="true">
 
-        <Button
+        <ImageView
             android:id="@+id/umeng_fb_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:background="@drawable/arrow_left"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/arrow_left"
             android:visibility="visible" />
         
         <TextView
@@ -29,7 +30,6 @@
             android:layout_toRightOf="@id/umeng_fb_back"
             android:layout_centerVertical="true"
             android:textColor="#FFFFFF"
-            android:paddingLeft="15dp"
             android:textSize="20dp" />
     </RelativeLayout>
 

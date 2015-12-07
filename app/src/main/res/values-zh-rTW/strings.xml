@@ -75,4 +75,8 @@
     <string name="publish_minutes_ago">%d 分钟前发布</string>
     <string name="publish_hours_ago">%d 小时前发布</string>
     <string name="publish_time">%s 发布</string>
+    <string name="no_network">没网络</string>
+    <string name="location">定位</string>
+    <string name="have_added_tips">已经添加</string>
+    <string name="have_no_weather">还没获取到天气信息</string>
 </resources>

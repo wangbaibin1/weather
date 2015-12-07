@@ -30,6 +30,7 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by binwang on 2015/11/10.
  */
 public class YaHooWeatherUtils {
+    private static final int HTTP_TIMEOUT = 1000 * 55;
     private static final long EXPIRE_TIME = 2 * 60 * 60 * 1000;
 
     // Json
@@ -75,9 +76,9 @@ public class YaHooWeatherUtils {
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
-            // 设置连接超时
-            conn.setConnectTimeout(10000);
-            conn.setReadTimeout(10000);
+
+            conn.setConnectTimeout(HTTP_TIMEOUT);
+            conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
             int code = conn.getResponseCode();
@@ -99,9 +100,9 @@ public class YaHooWeatherUtils {
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
-            // 设置连接超时
-            conn.setConnectTimeout(10000);
-            conn.setReadTimeout(10000);
+
+            conn.setConnectTimeout(HTTP_TIMEOUT);
+            conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
             int code = conn.getResponseCode();
@@ -131,9 +132,9 @@ public class YaHooWeatherUtils {
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
-            // 设置连接超时
-            conn.setConnectTimeout(10000);
-            conn.setReadTimeout(10000);
+
+            conn.setConnectTimeout(HTTP_TIMEOUT);
+            conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
             int code = conn.getResponseCode();

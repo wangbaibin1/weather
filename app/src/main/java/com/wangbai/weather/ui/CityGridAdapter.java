@@ -1,7 +1,6 @@
 package com.wangbai.weather.ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.wangbai.weather.R;
-import com.wangbai.weather.db.WeatherDbProviderManager;
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.event.CityWeatherUpdateEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by binwang on 2015/11/24.
@@ -59,20 +54,14 @@ public class CityGridAdapter extends BaseAdapter{
         TextView cityName = (TextView) convertView.findViewById(R.id.city_name);
         cityName.setText(weatherTable.cityName);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                mContext.startActivity(intent);
-
-
-                WeatherDbProviderManager.getInstance(mContext).insertWeatherData(weatherTable);
-                EventBus.getDefault().post(new CityWeatherUpdateEvent().setData(weatherTable));
-            }
-        });
-
+        if(weatherTable.isLocation()){
+            convertView.findViewById(R.id.location_icon).setVisibility(View.VISIBLE);
+        } else{
+            convertView.findViewById(R.id.location_icon).setVisibility(View.GONE);
+        }
 
         return convertView;
     }
+
+
 }

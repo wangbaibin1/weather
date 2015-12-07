@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:onClick="onClickBack"
             android:clickable="true"
             android:src="@drawable/arrow_left" />
@@ -24,7 +25,6 @@
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:layout_toRightOf="@id/arrow_left"
-            android:paddingLeft="15dp"
             android:layout_centerVertical="true"
             android:text="@string/city_manager"
             android:textColor="#FFFFFF"

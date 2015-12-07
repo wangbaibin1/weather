@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.wangbai.weather.R;
+import com.wangbai.weather.ui.MainApplication;
 import com.wangbai.weather.util.ShareConfigManager;
 
 import java.io.File;
@@ -70,9 +72,19 @@ public class LocalCityDbManager {
 
     }
 
+    private static void addLocationTable(List<WeatherTable> cityInfoList){
+        WeatherTable table = new WeatherTable();
+        table.cityName = MainApplication.getContext().getString(R.string.location);
+        table.cityWeid = WeatherTable.LOCATION_WOID;
+
+        cityInfoList.add(table);
+    }
+
     public static List<WeatherTable> queryWorldCityTableByCityName(Context context, String cityName) {
         Cursor cursor = null;
-        List<WeatherTable> cityInfoList = new ArrayList<WeatherTable>();
+        List<WeatherTable> cityInfoList = new ArrayList();
+        addLocationTable(cityInfoList);
+
         SQLiteDatabase mSQLiteDatabase = openDatabase(context);
         try {
             if (TextUtils.isEmpty(cityName)) {
