@@ -33,6 +33,9 @@
 #-keep class de.greenrobot.event.** {*;}
 #-keep class com.nineoldandroids.** {*;}
 #-keep class com.umeng.fb.** {*;}
--keep class com.wangbai.weather.ui.MainActivity{*;}
+
+-keepclassmembers class ** {
+    public void onEvent*(**);
+}
 
 
