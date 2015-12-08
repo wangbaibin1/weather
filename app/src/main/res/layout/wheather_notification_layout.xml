@@ -55,9 +55,10 @@
 
             <TextView
                 android:id="@+id/city"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_gravity="right"
+                android:singleLine="true"
                 android:textColor="#FFFFFF"
                 android:textSize="15dp" />
 
@@ -65,6 +66,8 @@
                 android:id="@+id/pub_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:singleLine="true"
                 android:layout_marginTop="6dp"
                 android:textSize="13dp" />
 

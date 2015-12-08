@@ -77,14 +77,6 @@ public class WeatherDbProviderManager {
         insertForeCastTable(foreCastTables,weatherTable.cityWeid);
     }
 
-    public void insertSearchWeatherData(SearResultData searResultData) {
-        WeatherTable weatherTable = new WeatherTable();
-        weatherTable.cityName = searResultData.mName;
-        weatherTable.countryName = searResultData.mCountry;
-        weatherTable.cityWeid = searResultData.mWoeid;
-        insertWeatherData(weatherTable);
-    }
-
     public void insertForeCastTable(List<ForeCastTable> foreCastTables,String woid) {
         if (foreCastTables == null || foreCastTables.size() <= 0) {
             return;
@@ -124,7 +116,7 @@ public class WeatherDbProviderManager {
 
             for (WeatherTable weatherTable : weatherTables) {
                 for (ForeCastTable foreCastTable : foreCastTableList) {
-                    if (weatherTable.cityWeid.equals(foreCastTable.weid)) {
+                    if (!TextUtils.isEmpty(weatherTable.cityWeid) && weatherTable.cityWeid.equals(foreCastTable.weid)) {
                         weatherTable.addForecast(foreCastTable);
                     }
                 }

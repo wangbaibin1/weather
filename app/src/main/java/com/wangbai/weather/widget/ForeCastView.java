@@ -58,7 +58,7 @@ public class ForeCastView extends LinearLayout {
             }
 
 
-            // 定义天气View的的效果
+
             ((TextView) view.findViewById(R.id.day)).setText(table.day);
 
             ((TextView) view.findViewById(R.id.tempreture)).setText((getContext().getString(R.string.show_temper , table.low + "~" + table.high)));
