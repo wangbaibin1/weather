@@ -55,8 +55,12 @@ public class MainActivity extends BaseActivity {
         initData();
 
         EventBus.getDefault().register(this);
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     private void initData() {
@@ -84,16 +88,16 @@ public class MainActivity extends BaseActivity {
         mSlidingMenu.setMode(SlidingMenu.LEFT);
         mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
-        mSlidingMenu.setBehindOffset(DenstyUtil.dip2px(this,40));
+        mSlidingMenu.setBehindOffset(DenstyUtil.dip2px(this, 40));
         mSlidingMenu.setFadeDegree(0.35f);
         mSlidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         mSlidingMenu.setMenu(R.layout.left_menu_setting_layout);
 
+        mSlidingMenu.findViewById(R.id.notification_icon).setSelected(ShareConfigManager.getInstance(this).isNotificationOpen());
         mSlidingMenu.findViewById(R.id.city_setting).setOnClickListener(mLeftMenuClickListener);
         mSlidingMenu.findViewById(R.id.notification_setting).setOnClickListener(mLeftMenuClickListener);
-        mSlidingMenu.findViewById(R.id.notification_icon).setSelected(ShareConfigManager.getInstance(this).isNotificationOpen());
-        mSlidingMenu.findViewById(R.id.feedback).setOnClickListener(mLeftMenuClickListener);
-        mSlidingMenu.findViewById(R.id.about).setOnClickListener(mLeftMenuClickListener);
+        mSlidingMenu.findViewById(R.id.feedback_setting).setOnClickListener(mLeftMenuClickListener);
+        mSlidingMenu.findViewById(R.id.help_setting).setOnClickListener(mLeftMenuClickListener);
     }
 
     private WeatherListView.ScrollListener mScrollListener = new WeatherListView.ScrollListener() {
@@ -194,11 +198,11 @@ public class MainActivity extends BaseActivity {
                         WeatherNotification.getInstance(MainActivity.this).canclePermantNotification();
                     }
                     break;
-                case R.id.feedback:
+                case R.id.feedback_setting:
                     FeedbackAgent agent = new FeedbackAgent(MainActivity.this);
                     agent.startFeedbackActivity();
                     break;
-                case R.id.about:
+                case R.id.help_setting:
                     AboutActivity.startActivity(MainActivity.this);
                     break;
             }
