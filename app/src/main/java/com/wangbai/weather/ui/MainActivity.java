@@ -1,6 +1,7 @@
 package com.wangbai.weather.ui;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.umeng.fb.FeedbackAgent;
 import com.wangbai.weather.Notification.WeatherNotification;
 import com.wangbai.weather.R;
@@ -17,7 +17,6 @@ import com.wangbai.weather.db.WeatherTable;
 import com.wangbai.weather.event.CityChangeEvent;
 import com.wangbai.weather.event.CurrentCityChangeEvent;
 import com.wangbai.weather.event.LocationEvent;
-import com.wangbai.weather.util.DenstyUtil;
 import com.wangbai.weather.util.LocationUtil;
 import com.wangbai.weather.util.ShareConfigManager;
 import com.wangbai.weather.util.WeatherStatusUtil;
@@ -36,7 +35,8 @@ public class MainActivity extends BaseActivity {
     private ImageView mSetting;
     private ImageView mWeatherBg;
 
-    private SlidingMenu mSlidingMenu;
+    private DrawerLayout mDrawerLayout;
+    private View mLeftDrawer;
     private WeatherListView mListView;
     private UpdateWeatherVeiw mUpdateWeatherVeiw;
     private MainWeatherAdapter mAdapter;
@@ -45,8 +45,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        SplashActivity.startActivity(this);
 
         initView();
 
@@ -84,20 +82,13 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initLeftMenu() {
-        mSlidingMenu = new SlidingMenu(this);
-        mSlidingMenu.setMode(SlidingMenu.LEFT);
-        mSlidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-
-        mSlidingMenu.setBehindOffset(DenstyUtil.dip2px(this, 40));
-        mSlidingMenu.setFadeDegree(0.35f);
-        mSlidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        mSlidingMenu.setMenu(R.layout.left_menu_setting_layout);
-
-        mSlidingMenu.findViewById(R.id.notification_icon).setSelected(ShareConfigManager.getInstance(this).isNotificationOpen());
-        mSlidingMenu.findViewById(R.id.city_setting).setOnClickListener(mLeftMenuClickListener);
-        mSlidingMenu.findViewById(R.id.notification_setting).setOnClickListener(mLeftMenuClickListener);
-        mSlidingMenu.findViewById(R.id.feedback_setting).setOnClickListener(mLeftMenuClickListener);
-        mSlidingMenu.findViewById(R.id.help_setting).setOnClickListener(mLeftMenuClickListener);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
+        mLeftDrawer = findViewById(R.id.left_drawer);
+        findViewById(R.id.notification_icon).setSelected(ShareConfigManager.getInstance(this).isNotificationOpen());
+        findViewById(R.id.city_setting).setOnClickListener(mLeftMenuClickListener);
+        findViewById(R.id.notification_setting).setOnClickListener(mLeftMenuClickListener);
+        findViewById(R.id.feedback_setting).setOnClickListener(mLeftMenuClickListener);
+        findViewById(R.id.help_setting).setOnClickListener(mLeftMenuClickListener);
     }
 
     private WeatherListView.ScrollListener mScrollListener = new WeatherListView.ScrollListener() {
@@ -141,7 +132,6 @@ public class MainActivity extends BaseActivity {
         mSetting = (ImageView) findViewById(R.id.setting);
         mWeatherBg = (ImageView) findViewById(R.id.weather_bg);
 
-
         mListView = (WeatherListView) findViewById(R.id.listview);
         mListView.setScrollListener(mScrollListener);
 
@@ -160,10 +150,10 @@ public class MainActivity extends BaseActivity {
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mSlidingMenu.isMenuShowing()) {
-                    mSlidingMenu.toggle();
+                if (mDrawerLayout.isDrawerOpen(mLeftDrawer)) {
+                    mDrawerLayout.closeDrawer(mLeftDrawer);
                 } else {
-                    mSlidingMenu.showMenu();
+                    mDrawerLayout.openDrawer(mLeftDrawer);
                 }
             }
         });
@@ -206,17 +196,9 @@ public class MainActivity extends BaseActivity {
                     AboutActivity.startActivity(MainActivity.this);
                     break;
             }
-            mSlidingMenu.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (mSlidingMenu.isMenuShowing()) {
-                        mSlidingMenu.toggle();
-                    }
-                }
-            },200);
-
-
-
+            if (mDrawerLayout.isDrawerOpen(mLeftDrawer)) {
+                mDrawerLayout.closeDrawer(mLeftDrawer);
+            }
         }
     };
 

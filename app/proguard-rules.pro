@@ -38,4 +38,8 @@
     public void onEvent*(**);
 }
 
+-keep public class **.R$*{
+    public static final int *;
+}
+
 

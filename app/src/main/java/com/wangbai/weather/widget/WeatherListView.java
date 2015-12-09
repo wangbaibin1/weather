@@ -137,7 +137,7 @@ public class WeatherListView extends ListView {
                     distance = distance / 2;
                     mCurrentMarginTop = mCurrentMarginTop + distance;
                     onScroll(mCurrentMarginTop, false);
-                    if (mCurrentMarginTop > -mBaseMargin) {
+                    if (mCurrentMarginTop > 0) {
                         mScrollListener.canUpdate(true);
                     } else {
                         mScrollListener.canUpdate(false);
@@ -148,7 +148,7 @@ public class WeatherListView extends ListView {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 isIntercept = false;
-                if (mCurrentMarginTop > -mBaseMargin) {
+                if (mCurrentMarginTop > 0) {
                     mCurrentMarginTop = 0;
                     onScroll(mCurrentMarginTop, true);
                     mScrollListener.startUpdate();
