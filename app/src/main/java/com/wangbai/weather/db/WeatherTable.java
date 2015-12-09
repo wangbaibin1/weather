@@ -93,6 +93,10 @@ public class WeatherTable {
         return contentValues;
     }
 
+    public boolean isLocationWeid(){
+        return String.valueOf(LOCATION_SIGN).equals(cityWeid);
+    }
+
     public boolean isLocation(){
         return mLocation == LOCATION_SIGN;
     }

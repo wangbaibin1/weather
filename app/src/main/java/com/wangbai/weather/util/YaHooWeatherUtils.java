@@ -1,5 +1,7 @@
 package com.wangbai.weather.util;
 
+import android.text.TextUtils;
+
 import com.wangbai.weather.db.WeatherTable;
 
 import org.json.JSONArray;
@@ -30,7 +32,7 @@ import javax.xml.parsers.SAXParserFactory;
  * Created by binwang on 2015/11/10.
  */
 public class YaHooWeatherUtils {
-    private static final int HTTP_TIMEOUT = 1000 * 55;
+    private static final int HTTP_TIMEOUT = 1000 * 15;
     private static final long EXPIRE_TIME = 2 * 60 * 60 * 1000;
 
     // Json
@@ -81,9 +83,9 @@ public class YaHooWeatherUtils {
             conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
-            int code = conn.getResponseCode();
-
-            return parseJsonCitys(resultFromServer);
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                return parseJsonCitys(resultFromServer);
+            }
         } catch (Exception e) {
 
         } finally {
@@ -105,9 +107,13 @@ public class YaHooWeatherUtils {
             conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
-            int code = conn.getResponseCode();
-            WeatherTable info =  parseString(resultFromServer, 2, woeid);
-            return info.cityWeid;
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                WeatherTable info =  parseString(resultFromServer, 2, woeid);
+                if(info !=null){
+                    return info.cityWeid;
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -137,10 +143,13 @@ public class YaHooWeatherUtils {
             conn.setReadTimeout(HTTP_TIMEOUT);
             InputStream inputStream = conn.getInputStream();
             String resultFromServer = inputStream2StringResult(inputStream);
-            int code = conn.getResponseCode();
-            WeatherTable info =  parseString(resultFromServer,1,woeid);
-            info.mLastUpdateTime = System.currentTimeMillis();
-            return info;
+            if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                WeatherTable info =  parseString(resultFromServer,1,woeid);
+                if(info != null){
+                    info.mLastUpdateTime = System.currentTimeMillis();
+                }
+                return info;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -153,6 +162,9 @@ public class YaHooWeatherUtils {
     }
 
     private static WeatherTable parseString(String result, int requestCode,String woeid) {
+        if(TextUtils.isEmpty(result)){
+            return null;
+        }
         WeatherTable weatherInfo = null;
         SAXParserFactory webspf = SAXParserFactory.newInstance();
         XMLReader xmlReader = null;
@@ -179,8 +191,10 @@ public class YaHooWeatherUtils {
 
 
     public static List<HashMap<String, String>> parseJsonCitys(String jsonData) {
-        List<HashMap<String, String>> mSearchCitys = new ArrayList<HashMap<String, String>>();
-        ;
+        if(TextUtils.isEmpty(jsonData)){
+            return null;
+        }
+        List<HashMap<String, String>> mSearchCitys = new ArrayList();
         try {
             int count = new JSONObject(jsonData).optJSONObject(JSON_TAG_QUERY)
                     .getInt(JSON_TAG_COUNT);

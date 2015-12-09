@@ -132,6 +132,7 @@ public class WeatherStatusUtil {
 
     static {
         sCodeTypeArray = new SparseIntArray();
+        sCodeTypeArray.append(-1, WEATHER_UNKNOW);
         sCodeTypeArray.append(0, WEATHER_WIND);
         sCodeTypeArray.append(1, WEATHER_WIND);
         sCodeTypeArray.append(2, WEATHER_WIND);
@@ -249,11 +250,11 @@ public class WeatherStatusUtil {
             case WEATHER_SHOWERS:
             case WEATHER_DRIZZLE:
                 return R.drawable.rain;
+            case WEATHER_UNKNOW:
+                return R.drawable.bg;
             default:
-                break;
+                return R.drawable.bg;
         }
-
-        return -1;
     }
 
 

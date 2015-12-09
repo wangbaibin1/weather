@@ -42,7 +42,7 @@ public class WeatherDbProviderManager {
             return;
         }
 
-        if(TextUtils.isEmpty(weatherTable.cityWeid)){
+        if(weatherTable.isLocationWeid()){
             mContext.getContentResolver().insert(CityProvider.CONTENT_URI_FOR_WEATHER, weatherTable.toContentValues());
         } else {
             mContext.getContentResolver().update(CityProvider.CONTENT_URI_FOR_WEATHER,
@@ -54,10 +54,10 @@ public class WeatherDbProviderManager {
         if (foreCastTables == null || foreCastTables.size() <= 0) {
             return;
         }
-        if(TextUtils.isEmpty(weatherTable.cityWeid)){
+        if(weatherTable.isLocationWeid()){
             return;
         }
-        insertForeCastTable(foreCastTables,weatherTable.cityWeid);
+        insertForeCastTable(foreCastTables, weatherTable.cityWeid);
     }
 
     public void insertWeatherData(WeatherTable weatherTable) {
@@ -86,6 +86,14 @@ public class WeatherDbProviderManager {
         for (ForeCastTable foreCastTable : foreCastTables) {
             mContext.getContentResolver().insert(CityProvider.CONTENT_URI_FOR_FORECAST, foreCastTable.toContentValues());
         }
+    }
+
+    public WeatherTable getCurrentCityWeather(boolean isNeedForeCast,String woid){
+        List<WeatherTable> weatherTables = quaryWeatherData(isNeedForeCast,woid);
+        if(weatherTables != null && !weatherTables.isEmpty()){
+            return weatherTables.get(0);
+        }
+        return null;
     }
 
     public List<WeatherTable> quaryWeatherData(boolean isNeedForeCast,String woid) {

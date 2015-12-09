@@ -25,7 +25,6 @@ import com.wangbai.weather.widget.UpdateWeatherVeiw;
 import com.wangbai.weather.widget.WeatherListView;
 
 import java.net.URL;
-import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -65,15 +64,18 @@ public class MainActivity extends BaseActivity {
 
         String woid = ShareConfigManager.getInstance(this).getCurrentCityWoid();
         if (!TextUtils.isEmpty(woid)) {
-            List<WeatherTable> weatherTableList = WeatherDbProviderManager.getInstance(this).quaryWeatherData(true, woid);
-            if (weatherTableList != null && !weatherTableList.isEmpty()) {
-                cityOrWeatherUpdateUI(weatherTableList.get(0));
-
-
-                if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTableList.get(0))) {
-                    updateWeatherInfo(weatherTableList.get(0));
+            WeatherTable weatherTable = WeatherDbProviderManager.getInstance(this).getCurrentCityWeather(true,woid);
+            if (weatherTable != null) {
+                cityOrWeatherUpdateUI(weatherTable);
+                if(weatherTable.isLocationWeid()){
+                    startLocation();
+                    return;
                 }
-                return;
+
+                if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTable)) {
+                    updateWeatherInfo(weatherTable);
+                    return;
+                }
             }
         }
 
@@ -179,10 +181,11 @@ public class MainActivity extends BaseActivity {
                     view.findViewById(R.id.notification_icon).setSelected(isOpen);
                     ShareConfigManager.getInstance(MainActivity.this).setNotificationOpen(isOpen);
 
-                    if (isOpen && !TextUtils.isEmpty(ShareConfigManager.getInstance(MainActivity.this).getCurrentCityWoid())) {
-                        List<WeatherTable> weatherTableList = WeatherDbProviderManager.getInstance(MainActivity.this).quaryWeatherData(false, ShareConfigManager.getInstance(MainActivity.this).getCurrentCityWoid());
-                        if (weatherTableList != null && !weatherTableList.isEmpty()) {
-                            WeatherNotification.getInstance(MainActivity.this).displayPermantNotification(weatherTableList.get(0));
+                    String currentCityWoid = ShareConfigManager.getInstance(MainActivity.this).getCurrentCityWoid();
+                    if (isOpen && !TextUtils.isEmpty(currentCityWoid)) {
+                        WeatherTable weatherTable = WeatherDbProviderManager.getInstance(MainActivity.this).getCurrentCityWeather(false, currentCityWoid);
+                        if (weatherTable != null) {
+                            WeatherNotification.getInstance(MainActivity.this).displayPermantNotification(weatherTable);
                         }
                     } else {
                         WeatherNotification.getInstance(MainActivity.this).canclePermantNotification();
@@ -229,6 +232,7 @@ public class MainActivity extends BaseActivity {
                         if (weatherTable == null || TextUtils.isEmpty(weatherTable.cityWeid)) {
                             Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
                         } else {
+                            weatherTable.mLocation = WeatherTable.LOCATION_SIGN;
                             Toast.makeText(MainActivity.this, R.string.location_success, Toast.LENGTH_SHORT).show();
                             cityOrWeatherUpdateUI(weatherTable);
                             ShareConfigManager.getInstance(MainActivity.this).setCurrentCityWoid(weatherTable.cityWeid);
@@ -255,6 +259,7 @@ public class MainActivity extends BaseActivity {
 
     private void onHandleLocationEvent(LocationEvent event) {
         WeatherDbProviderManager.getInstance(MainActivity.this).insertLocationWeatherData(event.mWeatherTable);
+        ShareConfigManager.getInstance(this).setCurrentCityWoid(event.mWeatherTable.cityWeid);
         mCityTitle.setText(event.mWeatherTable.cityName);
         startLocation();
     }

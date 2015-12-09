@@ -169,7 +169,8 @@ public class LocationUtil {
                 }
 
                 URL weatherurl = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestWeatherInfoUrl(cityCode, ShareConfigManager.getInstance(mContext).getTempertureUnit()));
-                WeatherTable info = YaHooWeatherUtils.sendRequestAndParseResultWeather(weatherurl, "");
+                WeatherTable info = YaHooWeatherUtils.sendRequestAndParseResultWeather(weatherurl, cityCode);
+
                 locationListenter.weatherFinish(info);
             }
         }).start();

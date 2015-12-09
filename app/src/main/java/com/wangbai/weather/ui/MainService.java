@@ -19,11 +19,11 @@ public class MainService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
-
-       if(ShareConfigManager.getInstance(this).isNotificationOpen() && !TextUtils.isEmpty(ShareConfigManager.getInstance(this).getCurrentCityWoid())){
-           List<WeatherTable> weatherTableList = WeatherDbProviderManager.getInstance(this).quaryWeatherData(false,ShareConfigManager.getInstance(this).getCurrentCityWoid());
-           if(weatherTableList != null && !weatherTableList.isEmpty()){
-               WeatherNotification.getInstance(this).displayPermantNotification(weatherTableList.get(0));
+        String currentWoid = ShareConfigManager.getInstance(this).getCurrentCityWoid();
+       if(ShareConfigManager.getInstance(this).isNotificationOpen() && !TextUtils.isEmpty(currentWoid)){
+           WeatherTable weatherTable = WeatherDbProviderManager.getInstance(this).getCurrentCityWeather(false,currentWoid);
+           if(weatherTable != null){
+               WeatherNotification.getInstance(this).displayPermantNotification(weatherTable);
            }
        }
     }

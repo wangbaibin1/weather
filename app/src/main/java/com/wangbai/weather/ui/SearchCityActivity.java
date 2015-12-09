@@ -135,13 +135,17 @@ public class SearchCityActivity extends BaseActivity {
         mCityGridAdapter.notifyDataSetChanged();
     }
 
-    public boolean isHasAdded(String woeid){
+    public boolean isHasAdded(String woeid,WeatherTable addWeatherTable){
         if(mHasAddedCitys == null || mHasAddedCitys.isEmpty() || TextUtils.isEmpty(woeid)){
             return false;
         }
 
        for(WeatherTable weatherTable : mHasAddedCitys){
            if(woeid.equals(weatherTable.cityWeid)){
+               return true;
+           }
+
+           if(addWeatherTable != null && addWeatherTable.isLocation() && weatherTable.isLocation()){
                return true;
            }
        }
@@ -153,7 +157,8 @@ public class SearchCityActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             final WeatherTable weatherTable = (WeatherTable) mCityGridAdapter.getItem(position);
-            if(isHasAdded(weatherTable.cityWeid)){
+
+            if(isHasAdded(weatherTable.cityWeid,weatherTable)){
                 Toast.makeText(SearchCityActivity.this,R.string.have_added_tips,Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -177,7 +182,7 @@ public class SearchCityActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             SearResultData searResultData = (SearResultData) mAdapter.getItem(position);
-            if(isHasAdded(searResultData.mWoeid)){
+            if(isHasAdded(searResultData.mWoeid,null)){
                 Toast.makeText(SearchCityActivity.this,R.string.have_added_tips,Toast.LENGTH_SHORT).show();
                 return;
             }

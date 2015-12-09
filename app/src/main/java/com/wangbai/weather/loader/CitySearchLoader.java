@@ -56,10 +56,6 @@ public class CitySearchLoader extends HandlerThread {
                 return;
             }
 
-            if (result == null || result.isEmpty()) {
-                mSearchResultL.searchFinish(mKey,null);
-                return;
-            }
             List<SearResultData> datas = toSearResultDatas(result);
             mSearchResultL.searchFinish(mKey, datas);
         }
@@ -82,6 +78,11 @@ public class CitySearchLoader extends HandlerThread {
 
     private List<SearResultData> toSearResultDatas(List<HashMap<String, String>> result) {
         List<SearResultData> datas = new ArrayList<>();
+
+        if(result == null || result.isEmpty()){
+            return datas;
+        }
+
         for (HashMap<String, String> item : result) {
             SearResultData data = new SearResultData();
             data.mName = item.get("name");
