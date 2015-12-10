@@ -12,15 +12,15 @@ import com.wangbai.weather.R;
 /**
  * Created by binwang on 2015/11/23.
  */
-public class UpdateWeatherVeiw extends LinearLayout {
+public class UpdateWeatherView extends LinearLayout {
     private ImageView mUpdateIcon;
     private TextView mUpdateTextView;
 
-    public UpdateWeatherVeiw(Context context) {
+    public UpdateWeatherView(Context context) {
         this(context, null);
     }
 
-    public UpdateWeatherVeiw(Context context, AttributeSet attrs) {
+    public UpdateWeatherView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }

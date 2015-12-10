@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.widget.TodayWeatherVeiw;
+import com.wangbai.weather.widget.TodayWeatherView;
 
 /**
  * Created by binwang on 2015/11/23.
@@ -24,11 +24,11 @@ public class TodayInfoItem extends BaseInfo{
 
     @Override
     public View getConvertView(View convertView, ViewGroup parent) {
-        if(convertView == null ||!( convertView instanceof TodayWeatherVeiw)){
-            convertView = new TodayWeatherVeiw(mContext);
+        if(convertView == null ||!( convertView instanceof TodayWeatherView)){
+            convertView = new TodayWeatherView(mContext);
 
         }
-        ((TodayWeatherVeiw) convertView).updateUI(mWeatherTable);
+        ((TodayWeatherView) convertView).updateUI(mWeatherTable);
         return convertView;
     }
 }

@@ -21,7 +21,7 @@ import com.wangbai.weather.util.LocationUtil;
 import com.wangbai.weather.util.ShareConfigManager;
 import com.wangbai.weather.util.WeatherStatusUtil;
 import com.wangbai.weather.util.YaHooWeatherUtils;
-import com.wangbai.weather.widget.UpdateWeatherVeiw;
+import com.wangbai.weather.widget.UpdateWeatherView;
 import com.wangbai.weather.widget.WeatherListView;
 
 import java.net.URL;
@@ -37,8 +37,9 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private View mLeftDrawer;
     private WeatherListView mListView;
-    private UpdateWeatherVeiw mUpdateWeatherVeiw;
+    private UpdateWeatherView mUpdateWeatherView;
     private MainWeatherAdapter mAdapter;
+    private WeatherTable mWeatherTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,8 @@ public class MainActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
     }
 
+    //init weather
     private void initData() {
-
         String woid = ShareConfigManager.getInstance(this).getCurrentCityWoid();
         if (!TextUtils.isEmpty(woid)) {
             WeatherTable weatherTable = WeatherDbProviderManager.getInstance(this).getCurrentCityWeather(true,woid);
@@ -69,20 +70,21 @@ public class MainActivity extends BaseActivity {
                 cityOrWeatherUpdateUI(weatherTable);
                 if(weatherTable.isLocationWeid()){
                     startLocation();
-                    return;
+
                 }
 
                 if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTable)) {
                     updateWeatherInfo(weatherTable);
-                    return;
                 }
+
+                return;
             }
         }
 
         SearchCityActivity.startActivity(this);
-
     }
 
+    //init left bar
     private void initLeftMenu() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         mLeftDrawer = findViewById(R.id.left_drawer);
@@ -103,7 +105,13 @@ public class MainActivity extends BaseActivity {
             if(mWeatherTable == null){
                 return;
             }
-            updateWeatherInfo(mWeatherTable);
+
+            if(mWeatherTable.isLocationWeid()){
+                startLocation();
+            } else{
+                updateWeatherInfo(mWeatherTable);
+            }
+
         }
 
         @Override
@@ -112,12 +120,12 @@ public class MainActivity extends BaseActivity {
                 return;
             }
             if (isCan) {
-                mUpdateWeatherVeiw.show(false, getString(R.string.handle_up_update));
+                mUpdateWeatherView.show(false, getString(R.string.handle_up_update));
             } else {
                 if (mWeatherTable == null || TextUtils.isEmpty(mWeatherTable.pubDate)) {
-                    mUpdateWeatherVeiw.show(false, getString(R.string.no_weather));
+                    mUpdateWeatherView.show(false, getString(R.string.no_weather));
                 } else {
-                    mUpdateWeatherVeiw.show(false, WeatherTable.getPubDate(mWeatherTable.pubDate));
+                    mUpdateWeatherView.show(false, WeatherTable.getPubDate(mWeatherTable.pubDate));
                 }
 
             }
@@ -163,8 +171,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void addHeaderOrFooter() {
-        mUpdateWeatherVeiw = new UpdateWeatherVeiw(this);
-        mListView.addHeaderView(mUpdateWeatherVeiw);
+        mUpdateWeatherView = new UpdateWeatherView(this);
+        mListView.addHeaderView(mUpdateWeatherView);
     }
 
 
@@ -213,11 +221,10 @@ public class MainActivity extends BaseActivity {
         } else if(event instanceof LocationEvent){
             onHandleLocationEvent((LocationEvent) event);
         }
-
     }
 
     private void startLocation(){
-        mUpdateWeatherVeiw.show(true, getString(R.string.location_going));
+        mUpdateWeatherView.show(true, getString(R.string.location_going));
         mListView.startUpdating();
         LocationUtil locationUtil = new LocationUtil(this);
         locationUtil.startLocationAndUpdateUI(new LocationUtil.LocationListenter() {
@@ -227,7 +234,7 @@ public class MainActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mUpdateWeatherVeiw.show(false, "");
+                        mUpdateWeatherView.show(false, "");
                         mListView.backToBegin();
                         if (weatherTable == null || TextUtils.isEmpty(weatherTable.cityWeid)) {
                             Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
@@ -247,7 +254,7 @@ public class MainActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mUpdateWeatherVeiw.show(false, "");
+                        mUpdateWeatherView.show(false, "");
                         mListView.backToBegin();
                         Toast.makeText(MainActivity.this, R.string.location_fail, Toast.LENGTH_SHORT).show();
                     }
@@ -260,11 +267,11 @@ public class MainActivity extends BaseActivity {
     private void onHandleLocationEvent(LocationEvent event) {
         WeatherDbProviderManager.getInstance(MainActivity.this).insertLocationWeatherData(event.mWeatherTable);
         ShareConfigManager.getInstance(this).setCurrentCityWoid(event.mWeatherTable.cityWeid);
-        mCityTitle.setText(event.mWeatherTable.cityName);
+
+        cityOrWeatherUpdateUI(event.mWeatherTable);
         startLocation();
     }
 
-    private WeatherTable mWeatherTable;
 
     public void cityOrWeatherUpdateUI(WeatherTable weatherTable) {
         if (weatherTable == null) {
@@ -278,14 +285,14 @@ public class MainActivity extends BaseActivity {
         mCityTitle.setText(weatherTable.cityName);
 
         int resId = WeatherStatusUtil.getWeatherBgResid(weatherTable.code);
-        if (resId != -1) {
+        if (resId > 0) {
             mWeatherBg.setImageResource(resId);
         }
 
     }
 
     private void updateWeatherInfo(final WeatherTable weatherTable) {
-        mUpdateWeatherVeiw.show(true, getString(R.string.weather_updating));
+        mUpdateWeatherView.show(true, getString(R.string.weather_updating));
         mListView.startUpdating();
         final URL weatherurl = YaHooWeatherUtils.getURL(YaHooWeatherUtils.getRequestWeatherInfoUrl(weatherTable.cityWeid, ShareConfigManager.getInstance(this).getTempertureUnit()));
         new Thread() {
@@ -297,7 +304,7 @@ public class MainActivity extends BaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mUpdateWeatherVeiw.show(false, "");
+                        mUpdateWeatherView.show(false, "");
                         cityOrWeatherUpdateUI(info);
                         mListView.backToBegin();
                     }

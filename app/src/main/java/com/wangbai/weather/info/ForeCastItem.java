@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.wangbai.weather.db.WeatherTable;
 import com.wangbai.weather.widget.ForeCastView;
-import com.wangbai.weather.widget.TodayWeatherVeiw;
 
 /**
  * Created by binwang on 2015/11/23.

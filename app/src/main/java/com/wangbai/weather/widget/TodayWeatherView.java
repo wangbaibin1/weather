@@ -10,23 +10,22 @@ import android.widget.TextView;
 
 import com.wangbai.weather.R;
 import com.wangbai.weather.db.WeatherTable;
-import com.wangbai.weather.util.DenstyUtil;
 import com.wangbai.weather.util.WeatherStatusUtil;
 
 /**
  * Created by binwang on 2015/11/11.
  */
-public class TodayWeatherVeiw extends LinearLayout {
+public class TodayWeatherView extends LinearLayout {
     private TextView mweather_info;
     private TextView mtigan_tm;
 
     private ImageView mimg_tem;
 
-    public TodayWeatherVeiw(Context context) {
+    public TodayWeatherView(Context context) {
         this(context, null);
     }
 
-    public TodayWeatherVeiw(Context context, AttributeSet attrs) {
+    public TodayWeatherView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
@@ -43,11 +42,16 @@ public class TodayWeatherVeiw extends LinearLayout {
         if(info == null){
             return;
         }
-        mweather_info.setText(WeatherStatusUtil.CODE_TO_WEATHERINFO[info.code]);
+        if (info.code < 0) {
+            mweather_info.setText("~");
+        } else {
+            mweather_info.setText(WeatherStatusUtil.CODE_TO_WEATHERINFO[info.code]);
+        }
+
         if(TextUtils.isEmpty(info.temperature)){
             mtigan_tm.setText("~");
         } else{
-            mtigan_tm.setText(getContext().getString(R.string.show_temper , info.temperature));
+            mtigan_tm.setText(getContext().getString(R.string.show_temper, info.temperature));
         }
 
         WeatherStatusUtil.setForecastIcon(mimg_tem, info.code);

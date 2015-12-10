@@ -56,7 +56,12 @@ public class CityManagerAdapter extends BaseAdapter {
         }
        final WeatherTable weatherTable = (WeatherTable) getItem(position);
         ((TextView) convertView.findViewById(R.id.city_name)).setText(weatherTable.cityName);
-        ((TextView) convertView.findViewById(R.id.tempreture)).setText(weatherTable.minTemper +"~"+weatherTable.maxTemper);
+        if(weatherTable.isHaveSuccessUpdate()){
+            ((TextView) convertView.findViewById(R.id.tempreture)).setText(mContext.getString(R.string.show_temper, weatherTable.minTemper + "~" + weatherTable.maxTemper));
+        } else{
+            ((TextView) convertView.findViewById(R.id.tempreture)).setText(R.string.have_no_weather);
+        }
+
         convertView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -105,7 +105,7 @@ public class WeatherTable {
     public String countryName;
     public String cityWeid;
     public String temperUnit;
-    public int code = 0;
+    public int code = -1;
     public String temperature;
     public long mLastUpdateTime;
     public String pubDate;
