@@ -70,13 +70,9 @@ public class MainActivity extends BaseActivity {
                 cityOrWeatherUpdateUI(weatherTable);
                 if(weatherTable.isLocationWeid()){
                     startLocation();
-
-                }
-
-                if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTable)) {
+                }else if (YaHooWeatherUtils.isNeedUpdateWeather(weatherTable)) {
                     updateWeatherInfo(weatherTable);
                 }
-
                 return;
             }
         }
