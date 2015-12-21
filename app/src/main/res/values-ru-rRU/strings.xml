@@ -1,0 +1,148 @@
+<resources>
+        
+    <string name="app_name"> Погода </string>
+        
+    <string name="weather_0"> Торнадо </string>
+        
+    <string name="weather_1"> тропический шторм </string>
+        
+    <string name="weather_2"> Ураган </string>
+        
+    <string name="weather_3"> сильные грозы </string>
+        
+    <string name="weather_4"> грозы </string>
+        
+    <string name="weather_5"> смешанный дождь и снег </string>
+        
+    <string name="weather_6"> смешанный дождь и мокрый снег </string>
+        
+    <string name="weather_7"> смешанный снег и мокрый снег </string>
+        
+    <string name="weather_8"> изморозь </string>
+        
+    <string name="weather_9"> дождь </string>
+        
+    <string name="weather_10"> ледяной дождь </string>
+        
+    <string name="weather_11"> душевые </string>
+        
+    <string name="weather_12"> душевые </string>
+        
+    <string name="weather_13"> снег порывы </string>
+        
+    <string name="weather_14"> свет снег </string>
+        
+    <string name="weather_15"> метели </string>
+        
+    <string name="weather_16"> снег </string>
+        
+    <string name="weather_17"> град </string>
+        
+    <string name="weather_18"> мокрый снег </string>
+        
+    <string name="weather_19"> пыль </string>
+        
+    <string name="weather_20"> туманное </string>
+        
+    <string name="weather_21"> дымка </string>
+        
+    <string name="weather_22"> дымчатый </string>
+        
+    <string name="weather_23"> ветреный </string>
+        
+    <string name="weather_24"> ветрено </string>
+        
+    <string name="weather_25"> холодная </string>
+        
+    <string name="weather_26"> облачно </string>
+        
+    <string name="weather_27"> облачно </string>
+        
+    <string name="weather_28"> облачно </string>
+        
+    <string name="weather_29"> облачно </string>
+        
+    <string name="weather_30"> облачно </string>
+        
+    <string name="weather_31"> ясно </string>
+        
+    <string name="weather_32"> солнечный </string>
+        
+    <string name="weather_33"> ярмарка </string>
+        
+    <string name="weather_34"> ярмарка </string>
+        
+    <string name="weather_35"> смешанный дождь и град </string>
+        
+    <string name="weather_36"> горячий </string>
+        
+    <string name="weather_37"> изолированные грозы </string>
+        
+    <string name="weather_38"> грозы </string>
+        
+    <string name="weather_39"> разбросаны грозы </string>
+        
+    <string name="weather_40"> Переменная облачность </string>
+        
+    <string name="weather_41"> сильный снег </string>
+        
+    <string name="weather_42">  разбросанные снег </string>
+        
+    <string name="weather_43"> сильный снег </string>
+        
+    <string name="weather_44"> облачно </string>
+        
+    <string name="weather_45"> ливни </string>
+        
+    <string name="weather_46"> ливневый снег </string>
+        
+    <string name="weather_47"> изолированные ливни </string>
+        
+    <string name="exit_tips"> Нажмите еще разn, чтобы выйти </string>
+        
+    <string name="location_success"> Место Успех </string>
+        
+    <string name="location_fail"> Место Сбой </string>
+        
+    <string name="location_going"> Место ... </string>
+        
+    <string name="установка"> Установка </string>
+        
+    <string name="setting_city"> Сити-менеджер </string>
+        
+    <string name="setting_notification"> Включить уведомления </string>
+        
+    <string name="setting_feedback"> Обратная </string>
+        
+    <string name="setting_about"> О </string>
+        
+    <string name="city_manager"> Сити-менеджер </string>
+        
+    <string name="city_add_bt"> Добавить </string>
+        
+    <string name="city_remove"> Удалить </string>
+        
+    <string name="city_add_title"> Город Добавить </string>
+        
+    <string name="weather_updating"> Погода обновление ... </string>
+        
+    <string name="about_us"> О нас </string>
+        
+    <string name="search_city"> Поиск города </string>
+        
+    <string name="hot_city"> Hot City </string>
+        
+    <string name="handle_up_update"> Сыпучие, чтобы обновить </string>
+        
+    <string name="no_weather"> не в состоянии получить погоду </string>
+        
+    <string name="publish_just_now"> прямо сейчас Опубликовать </string>
+        
+    <string name="publish_minutes_ago">% D минут назад публиковать </string>
+        
+    <string name="publish_hours_ago">% D часов назад публиковать </string>
+        
+    <string name="publish_time">% s опубликовать </string>
+        
+    <string name="show_temper">% S ° </string>
+</resources>

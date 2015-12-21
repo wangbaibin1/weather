@@ -1,0 +1,147 @@
+<resources>
+        
+    <string name="APP_NAME"> मौसम </string>
+        
+    <string name="weather_0"> बवंडर </string>
+        
+    <string name="weather_1"> उष्णकटिबंधीय तूफान </string>
+        
+    <string name="weather_2"> तूफान </string>
+        
+    <string name="weather_3"> गंभीर गरज </string>
+        
+    <string name="weather_4"> गरज </string>
+        
+    <string name="weather_5"> मिश्रित बारिश और बर्फ </string>
+        
+    <string name="weather_6"> मिश्रित बारिश और ओले के साथ </string>
+        
+    <string name="weather_7"> मिश्रित बर्फ और ओले के साथ </string>
+        
+    <string name="weather_8"> बूंदा बांदी ठंड </string>
+        
+    <string name="weather_9"> बूंदा बांदी </string>
+        
+    <string name="weather_10"> ठंड बारिश </string>
+        
+    <string name="weather_11"> की बारिश </string>
+        
+    <string name="weather_12"> की बारिश </string>
+        
+    <string name="weather_13"> बर्फ आंधी </string>
+        
+    <string name="weather_14"> प्रकाश हिमपात </string>
+        
+    <string name="weather_15"> बर्फ उड़ाने </string>
+        
+    <string name="weather_16"> बर्फ </string>
+        
+    <string name="weather_17"> ओलों </string>
+        
+    <string name="weather_18"> ओले के साथ </string>
+        
+    <string name="weather_19"> धूल </string>
+        
+    <string name="weather_20"> धूमिल </string>
+        
+    <string name="weather_21"> धुंध </string>
+        
+    <string name="weather_22"> शक्की </string>
+        
+    <string name="weather_23"> धमकी से </string>
+        
+    <string name="weather_24"> तूफानी </string>
+        
+    <string name="weather_25"> ठंड </string>
+        
+    <string name="weather_26"> बादल </string>
+        
+    <string name="weather_27"> भारी बादलों </string>
+        
+    <string name="weather_28"> भारी बादलों </string>
+        
+    <string name="Weather_29"> आंशिक रूप से बादल छाए रहेंगे </string>
+        
+    <string name="Weather_30"> आंशिक रूप से बादल छाए रहेंगे </string>
+        
+    <string name="weather_31"> स्पष्ट </string>
+        
+    <string name="weather_32"> धूप </string>
+        
+    <string name="weather_33"> निष्पक्ष </string>
+        
+    <string name="weather_34"> निष्पक्ष </string>
+        
+    <string name="weather_35"> मिश्रित बारिश और ओलों </string>
+        
+    <string name="weather_36"> गर्म </string>
+        
+    <string name="weather_37"> पृथक गरज </string>
+        
+    <string name="weather_38"> गरज </string>
+        
+    <string name="weather_39"> बिखरे हुए गरज </string>
+        
+    <string name="weather_40"> बिखरे हुए की बारिश </string>
+        
+    <string name="weather_41"> भारी बर्फ </string>
+        
+    <string name="weather_42"> बिखरे हुए हिमपात </string>
+        
+    <string name="weather_43"> भारी बर्फ </string>
+        
+    <string name="Weather_44"> आंशिक रूप से बादल छाए रहेंगे </string>
+        
+    <string name="weather_45"> गरज </string>
+        
+    <string name="weather_46"> बर्फ की बारिश </string>
+        
+    <string name="weather_47"> पृथक गरज </string>
+        
+    <string name="exit_tips"> प्रेस फिर से बाहर निकलने के लिए </string>
+        
+    <string name="location_success"> स्थान सफलता </string>
+        
+    <string name="location_fail"> स्थान विफल </string>
+        
+    <string name="location_going"> स्थान ... </string>
+    <string name="setting"> स्थापना </string>
+        
+    <string name="setting_city"> शहर प्रबंधक </string>
+        
+    <string name="setting_notification"> अधिसूचना सक्षम करें </string>
+        
+    <string name="setting_feedback"> वापस फ़ीड </string>
+        
+    <string name="setting_about"> बारे में </string>
+        
+    <string name="city_manager"> शहर प्रबंधक </string>
+        
+    <string name="city_add_bt"> जोड़ें </string>
+        
+    <string name="city_remove"> निकालें </string>
+        
+    <string name="city_add_title"> शहर जोड़ें </string>
+        
+    <string name="weather_updating"> मौसम अद्यतन करने ... </string>
+        
+    <string name="about_us"> हमारे बारे में </string>
+        
+    <string name="search_city"> खोजें City </string>
+        
+    <string name="hot_city"> हॉट सिटी </string>
+        
+    <string name="handle_up_update"> ढीला अद्यतन करने के लिए </string>
+        
+    <string name="no_weather"> मौसम पाने में विफल </string>
+        
+    <string name="Publish_just_now"> बस अब प्रकाशित </string>
+        
+    <string name="publish_minutes_ago">% d मिनट पहले प्रकाशित </string>
+        
+    <string name="publish_hours_ago">% d घंटे पहले प्रकाशित </string>
+        
+    <string name="publish_time">% s को प्रकाशित </string>
+        
+    <string name="show_temper">% s ° </string>
+</resources>

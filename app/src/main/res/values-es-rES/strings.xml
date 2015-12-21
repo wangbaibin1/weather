@@ -1,0 +1,147 @@
+<resources>
+        
+    <string name="nombre_apl"> Clima </string>
+        
+    <string name="weather_0"> tornado </string>
+        
+    <string name="weather_1"> tormenta tropical </string>
+        
+    <string name="weather_2"> huracán </string>
+        
+    <string name="weather_3"> tormentas severas </string>
+        
+    <string name="weather_4"> tormentas eléctricas </string>
+        
+    <string name="weather_5"> lluvia mezclada y la nieve </string>
+        
+    <string name="weather_6"> lluvia mezclada y aguanieve </string>
+        
+    <string name="weather_7"> la nieve mezclada y aguanieve </string>
+        
+    <string name="weather_8"> llovizna helada </string>
+        
+    <string name="weather_9"> llovizna </string>
+        
+    <string name="weather_10"> lluvia helada </string>
+        
+    <string name="weather_11"> duchas </string>
+        
+    <string name="weather_12"> duchas </string>
+        
+    <string name="weather_13"> copos de nieve </string>
+        
+    <string name="weather_14"> nieve luz </string>
+        
+    <string name="weather_15"> viento y nieve </string>
+        
+    <string name="weather_16"> nieve </string>
+        
+    <string name="weather_17"> granizo </string>
+        
+    <string name="weather_18"> aguanieve </string>
+        
+    <string name="weather_19"> polvo </string>
+        
+    <string name="weather_20"> niebla </string>
+        
+    <string name="weather_21"> niebla </string>
+        
+    <string name="weather_22"> humo </string>
+        
+    <string name="weather_23"> ventoso </string>
+        
+    <string name="weather_24"> viento </string>
+        
+    <string name="weather_25"> fría </string>
+        
+    <string name="weather_26"> nublado </string>
+        
+    <string name="weather_27"> mayormente nublado </string>
+        
+    <string name="weather_28"> mayormente nublado </string>
+        
+    <string name="weather_29"> parcialmente nublado </string>
+        
+    <string name="weather_30"> parcialmente nublado </string>
+        
+    <string name="weather_31"> claro </string>
+        
+    <string name="weather_32"> soleado </string>
+        
+    <string name="weather_33"> justa </string>
+    <string name="weather_34"> justa </string>
+        
+    <string name="weather_35"> lluvia mezclada y granizo </string>
+        
+    <string name="weather_36"> caliente </string>
+        
+    <string name="weather_37"> tormentas eléctricas aisladas </string>
+        
+    <string name="weather_38"> tormentas eléctricas </string>
+        
+    <string name="weather_39"> Tormentas </string>
+        
+    <string name="weather_40"> duchas dispersos </string>
+        
+    <string name="weather_41"> fuerte nevada </string>
+        
+    <string name="weather_42"> nieve dispersos </string>
+        
+    <string name="weather_43"> fuerte nevada </string>
+        
+    <string name="weather_44"> parcialmente nublado </string>
+        
+    <string name="weather_45"> chaparrones </string>
+        
+    <string name="weather_46"> nieve </string>
+        
+    <string name="weather_47"> chaparrones aislados </string>
+        
+    <string name="exit_tips"> Presione nuevamente para salir </string>
+        
+    <string name="location_success"> Ubicación éxito </string>
+        
+    <string name="location_fail"> Ubicación Falla </string>
+        
+    <string name="location_going"> Ubicación ... </string>
+        
+    <string name="ajuste"> Configuración </string>
+        
+    <string name="setting_city"> Administrador de la Ciudad </string>
+        
+    <string name="setting_notification"> Habilitar notificación </string>
+        
+    <string name="setting_feedback"> realimentación </string>
+        
+    <string name="setting_about"> Sobre </string>
+        
+    <string name="city_manager"> Administrador de la Ciudad </string>
+        
+    <string name="city_add_bt"> Añadir </string>
+        
+    <string name="city_remove"> Eliminar </string>
+        
+    <string name="city_add_title"> City Añadir </string>
+        
+    <string name="weather_updating"> El tiempo de actualización ... </string>
+        
+    <string name="about_us"> Quiénes somos </string>
+        
+    <string name="search_city"> Buscar Ciudad </string>
+        
+    <string name="hot_city"> Hot City </string>
+        
+    <string name="handle_up_update"> Loose actualizar </string>
+        
+    <string name="no_weather"> no puede conseguir el tiempo </string>
+        
+    <string name="publish_just_now"> Sólo Ahora Publicar </string>
+        
+    <string name="publish_minutes_ago"> Hace% d minutos publican </string>
+        
+    <string name="publish_hours_ago"> Hace% d horas publican </string>
+        
+    <string name="publish_time">% s publicará </string>
+        
+    <string name="show_temper">% s ° </string>
+</resources>

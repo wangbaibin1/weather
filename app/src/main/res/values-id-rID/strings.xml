@@ -1,0 +1,147 @@
+<resources>
+        
+    <string name="app_name"> Cuaca </string>
+        
+    <string name="weather_0"> tornado </string>
+        
+    <string name="weather_1"> badai tropis </string>
+        
+    <string name="weather_2"> badai </string>
+        
+    <string name="weather_3"> badai parah </string>
+        
+    <string name="weather_4"> badai </string>
+        
+    <string name="weather_5"> hujan campuran dan salju </string>
+        
+    <string name="weather_6"> hujan campuran dan hujan es </string>
+        
+    <string name="weather_7"> campuran salju dan hujan es </string>
+        
+    <string name="weather_8"> gerimis beku </string>
+        
+    <string name="weather_9"> Gerimis </string>
+        
+    <string name="weather_10"> hujan beku </string>
+        
+    <string name="weather_11"> mandi </string>
+        
+    <string name="weather_12"> mandi </string>
+        
+    <string name="weather_13"> Banjir salju </string>
+        
+    <string name="weather_14"> mandi cahaya salju </string>
+        
+    <string name="weather_15"> meniup salju </string>
+        
+    <string name="weather_16"> salju </string>
+        
+    <string name="weather_17"> hujan es </string>
+        
+    <string name="weather_18"> hujan es </string>
+        
+    <string name="weather_19"> debu </string>
+        
+    <string name="weather_20"> berkabut </string>
+        
+    <string name="weather_21"> kabut </string>
+        
+    <string name="weather_22"> berasap </string>
+        
+    <string name="weather_23"> berangin </string>
+        
+    <string name="weather_24"> berangin </string>
+        
+    <string name="weather_25"> dingin </string>
+        
+    <string name="weather_26"> berawan </string>
+        
+    <string name="weather_27"> sebagian besar berawan </string>
+        
+    <string name="weather_28"> sebagian besar berawan </string>
+        
+    <string name="weather_29"> sebagian berawan </string>
+        
+    <string name="weather_30"> sebagian berawan </string>
+        
+    <string name="weather_31"> jelas </string>
+        
+    <string name="weather_32"> cerah </string>
+        
+    <string name="weather_33"> yang adil </string>
+        
+    <string name="weather_34"> yang adil </string>
+        
+    <string name="weather_35"> hujan dan hujan es dicampur </string>
+        
+    <string name="weather_36"> panas </string>
+        
+    <string name="weather_37"> badai terisolasi </string>
+        
+    <string name="weather_38"> badai </string>
+        
+    <string name="weather_39"> tersebar badai </string>
+        
+    <string name="weather_40"> tersebar mandi </string>
+        
+    <string name="weather_41"> salju berat </string>
+        
+    <string name="weather_42"> hujan salju yang tersebar </string>
+        
+    <string name="weather_43"> salju berat </string>
+        
+    <string name="weather_44"> sebagian berawan </string>
+        
+    <string name="weather_45"> thundershowers </string>
+        
+    <string name="weather_46"> hujan salju </string>
+        
+    <string name="weather_47"> thundershowers terisolasi </string>
+        
+    <string name="exit_tips"> Tekan lagi untuk keluar </string>
+        
+    <string name="location_success"> Lokasi Sukses </string>
+        
+    <string name="location_fail"> Lokasi Gagal </string>
+        
+    <string name="location_going"> Lokasi ... </string>
+        
+    <string name="pengaturan"> Pengaturan </string>
+        
+    <string name="setting_city"> Manajer Kota </string>
+        
+    <string name="setting_notification"> Aktifkan notifikasi </string>
+        
+    <string name="setting_feedback"> Feed back </string>
+        
+    <string name="setting_about"> Tentang </string>
+        
+    <string name="city_manager"> Manajer Kota </string>
+        
+    <string name="city_add_bt"> Add </string>
+        
+    <string name="city_remove"> Hapus </string>
+        
+    <string name="city_add_title"> Kota Add </string>
+        
+    <string name="weather_updating"> memperbarui Cuaca ... </string>
+        
+    <string name="About_Us"> Tentang Kami </string>
+        
+    <string name="search_city"> Cari Kota </string>
+    <string name="hot_city"> Hot Kota </string>
+        
+    <string name="handle_up_update"> longgar untuk memperbarui </string>
+        
+    <string name="no_weather"> Gagal mendapatkan cuaca </string>
+        
+    <string name="publish_just_now"> Hanya Sekarang Publish </string>
+        
+    <string name="publish_minutes_ago">% d menit yang lalu mempublikasikan </string>
+        
+    <string name="publish_hours_ago">% d jam yang lalu mempublikasikan </string>
+        
+    <string name="publish_time">% s mempublikasikan </string>
+        
+    <string name="show_temp"> % s °</string>
+</resources>
