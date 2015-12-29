@@ -203,9 +203,7 @@ public class MainActivity extends BaseActivity {
                     AboutActivity.startActivity(MainActivity.this);
                     break;
             }
-            if (mDrawerLayout.isDrawerOpen(mLeftDrawer)) {
-                mDrawerLayout.closeDrawer(mLeftDrawer);
-            }
+
         }
     };
 

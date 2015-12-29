@@ -1,7 +1,5 @@
 <resources>
         
-    <string name="app_name"> Cuaca </string>
-        
     <string name="weather_0"> tornado </string>
         
     <string name="weather_1"> badai tropis </string>

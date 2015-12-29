@@ -1,7 +1,5 @@
 <resources>
         
-    <string name="APP_NAME"> मौसम </string>
-        
     <string name="weather_0"> बवंडर </string>
         
     <string name="weather_1"> उष्णकटिबंधीय तूफान </string>

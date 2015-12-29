@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather</string>
+    <string name="app_name">Beatuy Weather</string>
 
     <string name="weather_0">tornado</string>
     <string name="weather_1">tropical storm</string>

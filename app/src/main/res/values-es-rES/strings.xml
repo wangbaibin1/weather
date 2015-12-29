@@ -1,7 +1,5 @@
 <resources>
         
-    <string name="nombre_apl"> Clima </string>
-        
     <string name="weather_0"> tornado </string>
         
     <string name="weather_1"> tormenta tropical </string>
